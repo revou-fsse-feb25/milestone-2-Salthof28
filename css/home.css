@@ -1,0 +1,122 @@
+html,body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.white {
+    color: white;
+    stroke: white;
+}
+h1, h2, p {
+    margin: 0;
+}
+h1 {
+    font-size: 6rem;
+}
+h2 {
+    font-size: 5rem;
+}
+p, ul {
+    font-size: 2rem;
+    margin: 0.4rem;
+}
+
+svg {
+    width: 3rem;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; 
+    width: 95vw;
+    left: 1vw;
+    right: 1vw;
+    margin: 0.4% auto;
+    background-color: rgba(51, 50, 50, 0.329);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    z-index: 1;
+}
+header img {
+    width: 8rem;
+}
+header nav {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+header nav a {
+    align-items: center;
+}
+header nav a p, header section p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+header section{
+    align-items: center;
+}
+.home {
+    background: linear-gradient(rgba(22, 22, 22, 0.473) 80%, rgb(33, 9, 43)), url(../assets/overview-sementara.png);
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+}
+.home h2, .home p {
+    margin-left: 25%;
+}
+.home h2 span {
+    font-size: 8rem;
+}
+.home p {
+    margin-left: 25%;
+}
+.about {
+    padding: 15% 40%;
+    text-align: center;
+    background-color: rgb(33, 9, 43);
+}
+
+.list-games {
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(33, 9, 43);
+    padding: 4%;
+}
+.list-games div {
+    padding-top: 4%;
+    gap: 50px;
+    width: 90vw;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.list-games div article {
+    background: linear-gradient(rgb(33, 9, 43), rgba(255, 255, 255, 0.26));
+    text-align: center;
+    min-width: 32rem;
+    max-width: 35rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(141, 141, 141);
+    padding: 1%;
+}
+.list-games div article img {
+    width: 28rem;
+    padding: 5%;
+}
+
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+}
