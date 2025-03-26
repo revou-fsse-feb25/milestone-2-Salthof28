@@ -6,7 +6,6 @@ html,body {
 }
 .white {
     color: white;
-    stroke: white;
 }
 h1, h2, p {
     margin: 0;
@@ -21,9 +20,13 @@ p, ul {
     font-size: 2rem;
     margin: 0.4rem;
 }
-
+a {
+    text-decoration: none;
+}
 svg {
     width: 3rem;
+    fill: rgb(255, 145, 77);
+    stroke: rgb(201, 253, 6);
 }
 .row-container {
     display: flex;
@@ -51,8 +54,6 @@ header img {
     width: 8rem;
 }
 header nav {
-    display: flex;
-    flex-direction: row;
     gap: 60px;
 }
 header nav a {
@@ -60,6 +61,8 @@ header nav a {
 }
 header nav a p, header section p {
     font-size: 1rem;
+    color: rgb(255, 145, 77);
+    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
     margin: 0;
     padding: 0;
 }
