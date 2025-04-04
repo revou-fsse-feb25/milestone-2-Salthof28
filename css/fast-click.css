@@ -1,0 +1,121 @@
+@font-face {
+    font-family: "start 2p";
+    src: url(../fonts/Press_Start_2P/PressStart2P-Regular.ttf);
+}
+html,body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.deep-brown {
+    color: #682813;
+}
+a {
+    text-decoration: none;
+}
+body {
+    background-image: linear-gradient(180deg, #f09865 0%, #bd5c1c 50%, #ac2b2b 100%);
+}
+main {
+    min-height: 100vh;
+    font-family: cursive;
+}
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+    color: white;
+}
+main {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1, h2, p {
+    margin: 0;
+}
+h1 {
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 3px rgb(250, 50, 50);
+    font-family: "start 2p";
+}
+h2 {
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 3px rgb(250, 50, 50);
+    font-family: "start 2p";
+}
+p, ul {
+    font-size: 1.5rem;
+    margin: 0.4rem;
+}
+a {
+    text-decoration: none;
+}
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+svg {
+    width: 3rem;
+    fill: rgb(255, 145, 77);
+    stroke: rgb(201, 253, 6);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; 
+    width: 95vw;
+    left: 1vw;
+    right: 1vw;
+    margin: 0.4% auto;
+    background-color: rgba(51, 50, 50, 0.329);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    z-index: 1;  
+}
+header img {
+    width: 8rem;
+}
+header nav {
+    gap: 60px;
+    text-align: center;
+}
+header nav a {
+    align-items: center;
+}
+header nav a p, header section p {
+    font-size: 1rem;
+    color: rgb(255, 145, 77);
+    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
+    margin: 0;
+    padding: 0;
+}
+header section{
+    align-items: center;
+}
+button {
+    font-size: 1.5rem;
+    background-color: #ff0000;
+    border-radius: 0.5rem;
+}
+#plus {
+    margin-top: 2%;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    box-shadow: 0px 6px 0px #8a3b12, 0px 9px 15px rgba(255, 8, 0, 0.2);
+}
+#plus:active {
+    transform: translateY(4px);
+    box-shadow: 0px 2px 0px #8a3b12, 0px 5px 10px rgba(255, 8, 0, 0.2);
+}
+#scoretext {
+    margin-top: 5%;
+}
