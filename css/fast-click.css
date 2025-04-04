@@ -119,3 +119,73 @@ button {
 #scoretext {
     margin-top: 5%;
 }
+@media only screen and (max-width: 2304px) {
+    svg {
+        width: 2rem;
+    }
+    header img {
+        width: 6rem;
+    }
+}
+@media only screen and (max-width: 1228px) {
+    h1 {
+        font-size: 3rem;
+        padding-top: 2%;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p, ul {
+        font-size: 1rem;
+        margin: 0.4rem;
+    }
+}
+@media only screen and (max-width: 980px) {
+    svg {
+        width: 1.5rem;
+    }
+    header img {
+        width: 4rem;
+    }
+    header nav {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    h1, h2, p {
+        margin: 0;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    p, ul {
+        font-size: 0.5rem;
+        margin: 0.4rem;
+    }
+    button {
+        font-size: 1rem;
+    }
+    #plus {
+        width: 8rem;
+        height: 8rem;
+    }
+}
+@media only screen and (max-width: 712px) {
+    header nav {
+        padding-left: 35%;
+
+    }
+    header img {
+        display: none;
+    }
+    main {
+        text-align: center;
+        padding-top: 20%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
