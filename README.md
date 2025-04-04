@@ -3,7 +3,7 @@
 ## 📌 Overview
 This project is a landing page for sagames, featuring multiple mini-games built with vanilla JavaScript. The goal is to provide a fun and interactive experience for users while demonstrating strong JavaScript problem-solving and DOM manipulation skills.<br>
 Deploy Website:<br>
-github: https://revou-fsse-feb25.github.io/milestone-1-Salthof28/ <br>
+github: https://revou-fsse-feb25.github.io/milestone-2-Salthof28/ <br>
 
 ## 🚀 Features 
 - **Home Page**: Introduction to sagames with a clean, visually appealing design. Overview of available games with navigation links to each game page. Responsive layout for an optimal experience across devices.
