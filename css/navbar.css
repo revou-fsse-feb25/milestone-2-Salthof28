@@ -1,0 +1,104 @@
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+.row-container {
+    display: flex;
+    flex-direction: row;
+}
+svg {
+    width: 3rem;
+    fill: rgb(255, 145, 77);
+    stroke: rgb(201, 253, 6);
+}
+header {
+    display: flex;
+    position: fixed; 
+    align-items: center;
+    width: 95vw;
+    left: 1vw;
+    right: 1vw;
+    margin: 0.4% auto;
+    background-color: rgba(51, 50, 50, 0.329);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    z-index: 1;
+}
+header > .row-container{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+header img {
+    width: 8rem;
+}
+header nav {
+    gap: 60px;
+}
+header nav a {
+    align-items: center;
+}
+header nav a p, header section p {
+    font-size: 1rem;
+    color: rgb(255, 145, 77);
+    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
+    margin: 0;
+    padding: 0;
+}
+header section{
+    align-items: center;
+}
+@media only screen and (max-width: 2304px) {
+    svg {
+        width: 2rem;
+    }
+    header img {
+        width: 6rem;
+    }
+}
+@media only screen and (max-width: 980px) {
+    svg {
+        width: 1.5rem;
+    }
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    header #menu {
+        display: flex;
+        gap: 2px;
+    }
+    .line {
+        width: 2rem;
+        height: 1px;
+        border: solid rgb(255, 145, 77);
+        background-color: rgb(201, 253, 6);
+        transition: .3s ease;
+    }
+    header #menu.active .line:nth-child(1){
+        transform: translateY(9px) rotate(40deg);
+    }
+    header #menu.active .line:nth-child(2){
+        opacity: 0;
+    }
+    header #menu.active .line:nth-child(3){
+        transform: translateY(-9px) rotate(-40deg);
+    }
+    #menu-list{
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    #menu-list.showmenu {
+        max-height: 500px;
+    }
+    header div img {
+        width: 6rem;
+        margin-bottom: 4%;
+    }
+    header .row-container {
+        flex-direction: column;
+        gap: 10px;
+        transition: 3s ease-in-out;
+    }
+}

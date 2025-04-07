@@ -57,60 +57,6 @@ p, ul {
 a {
     text-decoration: none;
 }
-.column-container {
-    display: flex;
-    flex-direction: column;
-}
-.row-container {
-    display: flex;
-    flex-direction: row;
-}
-svg {
-    width: 3rem;
-    fill: rgb(255, 145, 77);
-    stroke: rgb(201, 253, 6);
-}
-button {
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    padding: 0.2%;
-    background-color: rgb(176, 141, 87);
-    color: rgb(240, 229, 216);
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; 
-    width: 95vw;
-    left: 1vw;
-    right: 1vw;
-    margin: 0.4% auto;
-    background-color: rgba(51, 50, 50, 0.329);
-    padding: 0.4rem 1rem;
-    border-radius: 2rem;
-    z-index: 1;  
-}
-header img {
-    width: 8rem;
-}
-header nav {
-    gap: 60px;
-    text-align: center;
-}
-header nav a {
-    align-items: center;
-}
-header nav a p, header section p {
-    font-size: 1rem;
-    color: rgb(255, 145, 77);
-    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
-    margin: 0;
-    padding: 0;
-}
-header section{
-    align-items: center;
-}
 .border-board{
     border: 1px solid rgb(176, 141, 87);
     width: 23rem;
@@ -161,14 +107,6 @@ header section{
 .imgbtnchoices {
     width: 4rem;
 }
-@media only screen and (max-width: 2304px) {
-    svg {
-        width: 2rem;
-    }
-    header img {
-        width: 6rem;
-    }
-}
 @media only screen and (max-width: 1228px) {
     h1 {
         font-size: 3rem;
@@ -183,17 +121,6 @@ header section{
     }
 }
 @media only screen and (max-width: 980px) {
-    svg {
-        width: 1.5rem;
-    }
-    header img {
-        width: 4rem;
-    }
-    header nav {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
     h1, h2, p {
         margin: 0;
     }
@@ -214,16 +141,8 @@ header section{
     .border-board{
         width: 16rem;
     }
-    
 }
 @media only screen and (max-width: 712px) {
-    header nav {
-        padding-left: 35%;
-
-    }
-    header img {
-        display: none;
-    }
     main {
         text-align: center;
         padding-top: 20%;
@@ -246,5 +165,3 @@ header section{
         order: 1;
     }
 }
-
-

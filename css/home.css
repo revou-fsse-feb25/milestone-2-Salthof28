@@ -23,52 +23,6 @@ p, ul {
 a {
     text-decoration: none;
 }
-svg {
-    width: 3rem;
-    fill: rgb(255, 145, 77);
-    stroke: rgb(201, 253, 6);
-}
-.row-container {
-    display: flex;
-    flex-direction: row;
-}
-.column-container {
-    display: flex;
-    flex-direction: column;
-}
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; 
-    width: 95vw;
-    left: 1vw;
-    right: 1vw;
-    margin: 0.4% auto;
-    background-color: rgba(51, 50, 50, 0.329);
-    padding: 0.4rem 1rem;
-    border-radius: 2rem;
-    z-index: 1;
-}
-header img {
-    width: 8rem;
-}
-header nav {
-    gap: 60px;
-}
-header nav a {
-    align-items: center;
-}
-header nav a p, header section p {
-    font-size: 1rem;
-    color: rgb(255, 145, 77);
-    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
-    margin: 0;
-    padding: 0;
-}
-header section{
-    align-items: center;
-}
 .home {
     background: linear-gradient(rgba(22, 22, 22, 0.473) 80%, rgb(33, 9, 43)), url(../assets/overview-sementara.png);
     background-size: cover;
@@ -128,14 +82,8 @@ footer {
     text-align: center;
 }
 @media only screen and (max-width: 2304px) {
-    svg {
-        width: 2rem;
-    }
     .about {
         padding: 15% 30%;
-    }
-    header img {
-        width: 6rem;
     }
 }
 @media only screen and (max-width: 1228px) {
@@ -154,17 +102,6 @@ footer {
     }
 }
 @media only screen and (max-width: 980px) {
-    svg {
-        width: 1.5rem;
-    }
-    header img {
-        width: 4rem;
-    }
-    header nav {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-    }
     h1, h2, p {
         margin: 0;
     }
@@ -193,13 +130,6 @@ footer {
     }
 }
 @media only screen and (max-width: 712px) {
-    header nav {
-        padding-left: 35%;
-
-    }
-    header img {
-        display: none;
-    }
     .about {
         padding: 15% 10%;
     }
