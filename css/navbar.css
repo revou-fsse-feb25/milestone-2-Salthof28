@@ -66,23 +66,23 @@ header section{
     }
     header #menu {
         display: flex;
-        gap: 4px;
+        gap: 0.2rem;
     }
     .line {
         width: 2rem;
-        height: 2px;
+        height: 0.125rem;
         border: solid rgb(255, 145, 77);
         background-color: rgb(201, 253, 6);
         transition: all .3s ease;
     }
     header #menu.active .line:nth-child(1){
-        transform: translateY(0.75rem) rotate(40deg);
+        transform: translateY(0.70rem) rotate(40deg);
     }
     header #menu.active .line:nth-child(2){
         opacity: 0;
     }
     header #menu.active .line:nth-child(3){
-        transform: translateY(-0.75rem) rotate(-40deg);
+        transform: translateY(-0.70rem) rotate(-40deg);
     }
     #menu-list{
         max-height: 0;
