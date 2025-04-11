@@ -11,6 +11,9 @@ svg {
     fill: rgb(255, 145, 77);
     stroke: rgb(201, 253, 6);
 }
+a {
+    align-items: center;
+}
 header {
     display: flex;
     position: fixed; 
@@ -34,9 +37,6 @@ header img {
 }
 header nav {
     gap: 60px;
-}
-header nav a {
-    align-items: center;
 }
 header nav a p, header section p {
     font-size: 1rem;
