@@ -59,7 +59,7 @@ button:hover {
     justify-content: center;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
-    padding: 4%;
+    padding: 1%;
     margin: 1% 5%;
 }
 #successcreate {
@@ -76,6 +76,11 @@ footer {
     text-align: center;
 }
 
+@media only screen and (max-width: 980px) {
+    #profileuser {
+        padding: 4%;
+    }
+}
 @media only screen and (max-width: 712px) {
     .loginform form {
         width: 17rem;
