@@ -1,10 +1,14 @@
+import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
 const btnstart = document.getElementById('btnstart');
 const formguess = document.getElementById('formguess');
 const btnguess = document.getElementById('btnguess');
 let guesser = document.getElementById('guesser');
 let inptguess = document.getElementById('inptguess');
 let attempt = 5;
+let statuswin = false;
 let secretnumber;
+const users = getUsers();
+const userlogin = statuslogin();
 
 btnstart.addEventListener('click', function () {
     formguess.style.display = 'block';
@@ -42,6 +46,8 @@ function processguess () {
         }
         else {
             guesser.textContent = `YOU WIN, The correct number is ${secretnumber}`;
+            statuswin = true;
+            savedatagame(statuswin)
             reset ();
         }
         inptguess.value = "";
@@ -64,8 +70,20 @@ function chances () {
     }
     else {
         guesser.textContent = `You Lose, the correct is ${secretnumber}`;
+        statuswin = false;
+        savedatagame(statuswin);
         reset();
     }
     console.log(attempt);
 }
-
+// savedatagame(statuswin);
+function savedatagame (statuswin) {
+    if (userlogin) {
+        const user = users.find(user => user.username == userlogin.username && user.password == userlogin.password);
+        const numberguessing = user.numberguessing;
+        statuswin ? numberguessing.win += 1 : numberguessing.lose += 1;
+        numberguessing.tg += 1;
+        saveUsers(users);
+        login(user);
+    }
+}

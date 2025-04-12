@@ -1,3 +1,4 @@
+import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
 // const choices = ['rock', 'paper', 'scissor'];
 const choices = [{name: 'rock', src: 'assets/rock.png'}, {name: 'paper', src: 'assets/paper.png'}, {name: 'scissor', src: 'assets/scissor.png'}];
 const players = document.querySelectorAll ('#player');
@@ -11,6 +12,7 @@ const handcomputer = document.getElementById ('handcomputer');
 const btnchoices = document.getElementById ('btnchoices');
 const inptmaxscore = document.getElementById ('maxscore');
 const finalresult = document.getElementById ('finalresult');
+const nicknameplayer = document.getElementById ('nicknameplayer');
 let playerpoint = 0;
 let computerpoint = 0;
 let computer;
@@ -19,7 +21,15 @@ let angle = 0;
 let direction = 1;
 let interval;
 let maxscore = 0;
+let statuswin = false;
+const users = getUsers();
+const userlogin = statuslogin();
 disablestart();
+nickname();
+function nickname () {
+    const loginstatus = statuslogin();
+    nicknameplayer.textContent = loginstatus ? loginstatus.username.toUpperCase() : 'PLAYER';
+}
 function disablestart () {
     if (maxscore == 0) {
         btnstart.setAttribute('disabled', 'disabled');
@@ -99,11 +109,15 @@ function animationhand() {
 function endgame() {
     if (playerpoint == maxscore){
         resetgame();
-        finalresult.textContent = `PLAYER WIN`
+        finalresult.textContent = `PLAYER WIN`;
+        statuswin = true;
+        savedatagame(statuswin);
     }
     else if (computerpoint == maxscore){
         resetgame();
-        finalresult.textContent = `COMPUTER WIN`
+        finalresult.textContent = `COMPUTER WIN`;
+        statuswin = false;
+        savedatagame(statuswin);
     }
     else {
         start ();
@@ -117,4 +131,14 @@ function resetgame (){
     btnstart.style.display = '';
     inptmaxscore.value = maxscore = 0;
     disablestart();
+}
+function savedatagame (statuswin) {
+    if (userlogin) {
+        const user = users.find(user => user.username == userlogin.username && user.password == userlogin.password);
+        const rockpaperscissor = user.rockpaperscissor;
+        statuswin ? rockpaperscissor.win += 1 : rockpaperscissor.lose += 1;
+        rockpaperscissor.tg += 1;
+        saveUsers(users);
+        login(user);
+    }
 }
