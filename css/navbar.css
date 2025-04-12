@@ -13,6 +13,7 @@ svg {
 }
 a {
     align-items: center;
+    text-decoration: none;
 }
 header {
     display: flex;
