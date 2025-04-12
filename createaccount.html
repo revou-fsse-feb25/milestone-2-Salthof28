@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/accountform.css">
+</head>
+<body>
+    <main class="column-container">
+        <section class="column-container loginform" id="create-account-form">
+            <form class="column-container">
+                <h1>Create Account</h1>
+                <br>
+                <input id="username" type="text" name="name" placeholder="username" pattern="^\S+$" required>
+                <br><br>
+                <input id="password" type="password" name="password" placeholder="password" required>
+                <br><br>
+                <button class="white" type="submit" id="create-account">Create</button>
+                <button class="white" type="submit" onclick="location.href='login.html'">Back</button>
+            </form>
+        </section>
+        <section id="successcreate" class="column-container" style="display: none;">
+            <h1>Account Created</h1>
+        </section>
+    </main>
+    <footer>
+        <p class="white">2025 &copy Salman Althof</p>
+    </footer>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+html,body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin: 4% 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+main {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5);
+    justify-content: center;
+    align-items: center;
+}
+input {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 0px;
+    text-align: center;
+
+}
+button {
+    margin-bottom: 1%;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    border: 0px;
+    font-weight: bold;
+    background: linear-gradient(to right, #dd25ce 25%, #2575fc);
+}
+button:hover {
+    opacity: 0.8;
+}
+.white {
+    color: white;
+}
+.loginform {
+    align-items: center;
+    justify-content: center;
+}
+.loginform form {
+    align-items: center;
+    width: 20rem;
+    border-radius: 2rem;
+    padding: 4%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#profileuser {
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4%;
+    margin: 1% 5%;
+}
+#successcreate {
+    text-align: center;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0% 1%;
+    margin: 20% 4%;
+}
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 712px) {
+    .loginform form {
+        width: 17rem;
+    }
+}
