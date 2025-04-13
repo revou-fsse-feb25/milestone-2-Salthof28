@@ -71,6 +71,7 @@ a {
 }
 .list-games div article img {
     width: 28rem;
+    height: 15rem;
     padding: 5%;
 }
 .games {
