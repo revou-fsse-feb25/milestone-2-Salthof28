@@ -100,6 +100,7 @@ footer {
     }
     .list-games div article img {
         width: 22rem;
+        height: 11rem;
     }
 }
 @media only screen and (max-width: 980px) {
@@ -125,6 +126,7 @@ footer {
     }
     .list-games div article img {
         width: 12rem;
+        height: 6rem;
     }
     .about {
         padding: 15% 30%;
