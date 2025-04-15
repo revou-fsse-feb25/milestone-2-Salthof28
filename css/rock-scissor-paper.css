@@ -15,9 +15,6 @@ a {
     text-decoration: none;
 }
 body {
-    /* #270D01 */
-    /* background-image: linear-gradient(180deg, #74EBD5 0%, #9FACE6 50%, #ebd5df 100%); */
-    /* background: linear-gradient(180deg, #270D01 0%, #442d25 50%, #6d5735 100%); */
     background-color: #270D01;
 }
 main {
@@ -60,6 +57,15 @@ a {
 button {
     background-color: #b08d57;
     color: white;
+    border-radius: 0.4rem;
+}
+button:hover {
+    box-shadow: 0 0 10px rgb(80, 143, 114) ;
+}
+button:active {
+    transform: scale(0.97);
+    background: #b08c57a1;
+    box-shadow: inset 0 0 5px rgba(80, 143, 114, 0.3);
 }
 .border-board{
     border: 1px solid rgb(176, 141, 87);
@@ -86,6 +92,9 @@ button {
 #btnchoices {
     width: 90vw;
     text-align: center;
+}
+#player {
+    border-radius: 1rem;
 }
 #handcontainer, #finalresult {
     padding-top: 2%;

@@ -60,6 +60,14 @@ button {
     border-radius: 0.5rem;
     background-color: yellow;
 }
+button:hover {
+    box-shadow: 0 0 20px rgb(209, 163, 11);
+}
+button:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 0, 0.7);
+    box-shadow: inset 0 0 5px rgba(255, 255, 0, 0.3);
+}
 .guesser-box {
     align-items: center;
     justify-content: center;
