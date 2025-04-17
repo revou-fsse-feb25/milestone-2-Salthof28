@@ -73,8 +73,11 @@ function startgame () {
         if (firstcardimg == secondcardimg) {
             firstcard = null;
             countsamechard += 1;
-            statuswin = true
-            countsamechard == rawcards.length && endgame (statuswin);
+            if (countsamechard == rawcards.length) {
+                statuswin = true;
+                endgame (statuswin);
+            }
+            // countsamechard == rawcards.length && endgame (statuswin = true);
         }
         else {
             lockclick = true;
@@ -99,7 +102,6 @@ function startgame () {
         resultgame.style.display = '';
         timerdisplay.textContent = "";
         timer = 60;
-        statuswin = false;
     }
     function savedatagame (statuswin) {
         if (userlogin) {
@@ -118,6 +120,7 @@ function startgame () {
 btnstartgame.addEventListener('click', () => {
     btnstartgame.style.display = 'none';
     resultgame.style.display = 'none';
+    statuswin = false;
     startgame();  
 })
 
