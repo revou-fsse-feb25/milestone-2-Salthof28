@@ -1,0 +1,200 @@
+@font-face {
+    font-family: "start 2p";
+    src: url(../fonts/Press_Start_2P/PressStart2P-Regular.ttf);
+}
+html,body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.white {
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+body {
+    background-image: linear-gradient(180deg, #74EBD5 0%, #9FACE6 50%, #ebd5df 100%);
+}
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+    color: white;
+}
+main {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: cursive;
+}
+h1, h2, p {
+    margin: 0;
+}
+h1 {
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 3px yellow;
+    font-family: "start 2p";
+    text-align: center;
+}
+h2 {
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 3px yellow;
+    font-family: "start 2p";
+}
+p, ul {
+    font-size: 1.5rem;
+    margin: 0.4rem;
+}
+a {
+    text-decoration: none;
+}
+input {
+    border-radius: 0.5rem;
+}
+button {
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: yellow;
+}
+button:hover {
+    box-shadow: 0 0 20px rgb(209, 163, 11);
+}
+button:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 0, 0.7);
+    box-shadow: inset 0 0 5px rgba(255, 255, 0, 0.3);
+}
+#containercardgame {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* border: 1px solid black; */
+    border-radius: 1rem;
+    width: 45rem;
+    flex-wrap: wrap;
+    /* height: 40vh; */
+    margin-top: 2%;
+    gap: 10px;
+    padding: 2%;
+}
+#btnstart {
+    margin-top: 5%;
+}
+
+#containercardgame #card{
+    perspective: 1000px;
+    width: 10rem;
+    height: 15rem;
+    transform-style: preserve-3d;
+    transition: 1s ease;
+}
+#containercardgame #card.active {
+    transform: rotateY(180deg) rotateZ(360deg);
+}
+
+#containercardgame #card .front, 
+#containercardgame #card .back{
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    position: absolute;
+}
+#containercardgame #card .front {
+    background-image: url(../assets/memory-pokemon-game/back-card-pokemon2.png);
+}
+#containercardgame #card .back {
+    background-image: url(../assets/memory-pokemon-game/frame.png);
+    background-color: #fdcc45;
+    transform: rotateY(180deg);
+}
+
+#containercardgame #card .back img {
+    width: 8rem;
+    height: 12rem;
+}
+
+.howplay {
+    padding: 2%;
+}
+.howplay ol {
+    margin: 0;
+    padding: 0;
+    padding-left: 4%;
+    width: 80%;
+    text-align: justify;
+}
+@media only screen and (max-width: 1228px) {
+    h1 {
+        font-size: 3rem;
+        padding-top: 2%;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p, ul {
+        font-size: 1rem;
+        margin: 0.4rem;
+    }
+}
+@media only screen and (max-width: 980px) {
+    h1, h2, p {
+        margin: 0;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    p, ul {
+        font-size: 0.5rem;
+        margin: 0.4rem;
+    }
+    button {
+        font-size: 1rem;
+    }
+    .game-container {
+        height: 25vh;
+        width: 85vw;
+    }
+    #containercardgame #card{
+        width: 9rem;
+        height: 14rem;
+    }
+}
+@media only screen and (max-width: 712px) {
+    main {
+        text-align: center;
+        padding-top: 20%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .howplay ol {
+        margin: auto;
+        width: 80%;
+        text-align: justify;
+    }
+    .game-container {
+        width: 90vw;
+    }
+    #containercardgame {
+        width: 15rem;
+    }
+    #containercardgame #card{
+        width: 3rem;
+        height: 5rem;
+    }
+    #containercardgame #card .back img {
+        width: 2rem;
+        height: 3rem;
+    }
+}
