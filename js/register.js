@@ -17,7 +17,7 @@ createAccount.addEventListener('click', (event) => {
             alert("Username already exists");
         }
         else {
-            users.push({ username: `${username.trim()}`, password: `${password.trim()}`, numberguessing: {win: 0, lose: 0, tg: 0}, rockpaperscissor: {win: 0, lose: 0, tg: 0}, fastclicker: {hs: 0, tg: 0} });
+            users.push({ username: `${username.trim()}`, password: `${password.trim()}`, numberguessing: {win: 0, lose: 0, tg: 0}, rockpaperscissor: {win: 0, lose: 0, tg: 0}, fastclicker: {hs: 0, tg: 0}, pokemonmemorygame: {win: 0, lose: 0, tg: 0} });
             saveUsers(users);
             createAccountForm.style.display = 'none';
             successcreate.style.display = 'flex';

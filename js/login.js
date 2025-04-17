@@ -10,6 +10,9 @@ const TGNumberGuessing = document.getElementById ('TGNumberGuessing');
 const WRockPaperScissor = document.getElementById ('WRockPaperScissor');
 const LRockPaperScissor = document.getElementById ('LRockPaperScissor');
 const TGRockPaperScissor = document.getElementById ('TGRockPaperScissor');
+const WPokemonMemoryGame = document.getElementById ('WPokemonMemoryGame');
+const LPokemonMemoryGame = document.getElementById ('LPokemonMemoryGame');
+const TGPokemonMemoryGame = document.getElementById ('TGPokemonMemoryGame');
 const HGFastClicker = document.getElementById ('HGFastClicker');
 const TGFastClicker = document.getElementById ('TGFastClicker');
 const users = getUsers();
@@ -59,6 +62,7 @@ function updateprofile (user) {
     const numberguessing = user.numberguessing;
     const rockpaperscissor = user.rockpaperscissor;
     const fastclicker = user.fastclicker;
+    const pokemonmemorygame = user.pokemonmemorygame;
     WNumberGuessing.textContent = `Win: ${numberguessing.win}`;
     LNumberGuessing.textContent = `Lose: ${numberguessing.lose}`;
     TGNumberGuessing.textContent = `Total Game: ${numberguessing.tg}`;
@@ -69,4 +73,8 @@ function updateprofile (user) {
 
     HGFastClicker.textContent = `High Score: ${fastclicker.hs}`;
     TGFastClicker.textContent = `Total Game: ${fastclicker.tg}`;
+
+    WPokemonMemoryGame.textContent = `Win: ${pokemonmemorygame.win}`;
+    LPokemonMemoryGame.textContent = `Lose: ${pokemonmemorygame.lose}`;
+    TGPokemonMemoryGame.textContent = `Total Game: ${pokemonmemorygame.tg}`;
 }
