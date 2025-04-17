@@ -75,6 +75,16 @@ button:hover {
 #scoretext {
     margin-top: 5%;
 }
+.howplay {
+    padding: 2%;
+}
+.howplay ol {
+    margin: 0;
+    padding: 0;
+    padding-left: 4%;
+    width: 80%;
+    text-align: justify;
+}
 @media only screen and (max-width: 1228px) {
     h1 {
         font-size: 3rem;

@@ -120,6 +120,17 @@ button:active {
 .imgbtnchoices {
     width: 4rem;
 }
+.howplay {
+    padding: 2%;
+}
+.howplay ol {
+    margin: 0;
+    padding: 0;
+    padding-left: 4%;
+    width: 80%;
+    text-align: justify;
+    color: rgb(212, 175, 55);
+}
 @media only screen and (max-width: 1228px) {
     h1 {
         font-size: 3rem;
