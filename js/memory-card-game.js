@@ -106,7 +106,6 @@ function startgame () {
             statuswin ? pokemonmemorygame.win += 1 : pokemonmemorygame.lose += 1;
             pokemonmemorygame.tg += 1;
             saveUsers(users);
-            statuswin = false;
             login(user);
         }
         reset();
@@ -117,6 +116,7 @@ function startgame () {
 btnstartgame.addEventListener('click', () => {
     btnstartgame.style.display = 'none';
     resultgame.style.display = 'none';
+    statuswin = false;
     startgame();  
 })
 
