@@ -1,7 +1,7 @@
 # Project Milestone 2
 
 ## 📌 Overview
-This project is a landing page for sagames, featuring multiple mini-games built with vanilla JavaScript. The goal is to provide a fun and interactive experience for users while demonstrating strong JavaScript problem-solving and DOM manipulation skills.<br>
+Sagames is a fun, interactive web-based game hub where users can enjoy a variety of simple yet addictive JavaScript games. Designed for casual players, Sagames is all about quick gameplay, clean design, and a nostalgic dose of classic mini-games — all accessible right from your browser.<br>
 Deploy Website:<br>
 github: https://revou-fsse-feb25.github.io/milestone-2-Salthof28/ <br>
 
@@ -10,19 +10,23 @@ github: https://revou-fsse-feb25.github.io/milestone-2-Salthof28/ <br>
 ![Website Preview](assets/ss-markdown/home1.png)
 ![Website Preview](assets/ss-markdown/home2.png)
 - **Game Pages**: <br>
-Rock Paper Scissors
+Rock Paper Scissors <br>
+A timeless classic! Play against the computer in a quick match of luck and strategy. Choose your move and see if you can outsmart the computer.
 ![Website Preview](assets/ss-markdown/rock-paper-scissor-game.png)
-Number Guessing Game
+Number Guessing Game <br>
+Can you guess the correct number? The computer picks a random number. Your job is to find it with as few attempts as possible. Perfect for logic and luck lovers.
 ![Website Preview](assets/ss-markdown/number-guessing-game.png)
-Fast Clicker Game
+Fast Clicker Game <br>
+Test your clicking speed and aim to beat your high score before time runs out. It's simple, and fun!
 ![Website Preview](assets/ss-markdown/fastclickergame.png)
-Pokemon Memory Game
+Pokemon Memory Game <br>
+Train your brain with this Pokémon-themed memory card matching game. Flip cards, find matching pairs, and try to complete the board in short time.
 ![Website Preview](assets/ss-markdown/memory-pokemon-game.png)
 ![Website Preview](assets/ss-markdown/memory-pokemon-game2.png)
 - **User Authentication**: Register and login system using localStorage.
 ![Website Preview](assets/ss-markdown/create-account.png)
 ![Website Preview](assets/ss-markdown/login-page.png)
-- **User Profiles**: Track individual game progress (wins, losses, highscores) based on login. If you want to save your track progress, I recomend login before playing the game.
+- **User Profiles**: Track individual game progress (wins, losses, highscores) based on login. If you want to save your track progress, I recomend login before playing the game. In profile user you can monitor your performance across all games.
 ![Website Preview](assets/ss-markdown/history-game-user.png)
 
 
@@ -30,6 +34,8 @@ Pokemon Memory Game
 - **HTML5** - Structure of the landing page and individual game pages.
 - **CSS3** - Styling for visual appeal and responsive design.
 - **JavaScript (Vanilla)** - Game logic, DOM manipulation, event handling, authentication, and local data handling.
+- **Form Validation** – Custom client-side validation to ensure data integrity during registration/login.
+- **LocalStorage Integration** - Stores user sessions and game states locally for fast access and offline capability.
 
 ## 📜 How to Use
 1. clone this repository:
