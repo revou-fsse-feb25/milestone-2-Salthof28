@@ -7,9 +7,24 @@ github: https://revou-fsse-feb25.github.io/milestone-2-Salthof28/ <br>
 
 ## 🚀 Features 
 - **Home Page**: Introduction to sagames with a clean, visually appealing design. Overview of available games with navigation links to each game page. Responsive layout for an optimal experience across devices.
-- **Game Pages**: Rock Paper Scissors, Number Guessing Game, Clicker Game
+![Website Preview](assets/ss-markdown/home1.png)
+![Website Preview](assets/ss-markdown/home2.png)
+- **Game Pages**: <br>
+Rock Paper Scissors
+![Website Preview](assets/ss-markdown/rock-paper-scissor-game.png)
+Number Guessing Game
+![Website Preview](assets/ss-markdown/number-guessing-game.png)
+Fast Clicker Game
+![Website Preview](assets/ss-markdown/fastclickergame.png)
+Pokemon Memory Game
+![Website Preview](assets/ss-markdown/memory-pokemon-game.png)
+![Website Preview](assets/ss-markdown/memory-pokemon-game2.png)
 - **User Authentication**: Register and login system using localStorage.
-- **User Profiles**: Track individual game progress (wins, losses, highscores) based on login.
+![Website Preview](assets/ss-markdown/create-account.png)
+![Website Preview](assets/ss-markdown/login-page.png)
+- **User Profiles**: Track individual game progress (wins, losses, highscores) based on login. If you want to save your track progress, I recomend login before playing the game.
+![Website Preview](assets/ss-markdown/history-game-user.png)
+
 
 ## 💡 Technologies Used
 - **HTML5** - Structure of the landing page and individual game pages.
