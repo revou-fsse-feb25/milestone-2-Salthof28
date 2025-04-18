@@ -73,11 +73,7 @@ function startgame () {
         if (firstcardimg == secondcardimg) {
             firstcard = null;
             countsamechard += 1;
-            if (countsamechard == rawcards.length) {
-                statuswin = true;
-                endgame (statuswin);
-            }
-            // countsamechard == rawcards.length && endgame (statuswin = true);
+            countsamechard == rawcards.length && endgame(statuswin = true);
         }
         else {
             lockclick = true;
@@ -110,6 +106,7 @@ function startgame () {
             statuswin ? pokemonmemorygame.win += 1 : pokemonmemorygame.lose += 1;
             pokemonmemorygame.tg += 1;
             saveUsers(users);
+            statuswin = false;
             login(user);
         }
         reset();
@@ -120,7 +117,6 @@ function startgame () {
 btnstartgame.addEventListener('click', () => {
     btnstartgame.style.display = 'none';
     resultgame.style.display = 'none';
-    statuswin = false;
     startgame();  
 })
 
