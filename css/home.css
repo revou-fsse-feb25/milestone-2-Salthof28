@@ -130,6 +130,12 @@ button:active {
 .games {
     padding-bottom: 100vh;
 }
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+    color: white;
+}
 @media only screen and (max-width: 2304px) {
     .about {
         padding: 15% 30%;
