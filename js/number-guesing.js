@@ -70,7 +70,7 @@ class NumberGuessingGame {
     }
     savedatagame (statuswin) {
         if (this.userlogin) {
-            const user = this.users.find(user => user.username == this.userlogin.username && user.password == this.userlogin.password);
+            const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
             const numberguessing = user.numberguessing;
             statuswin ? numberguessing.win += 1 : numberguessing.lose += 1;
             numberguessing.tg += 1;
