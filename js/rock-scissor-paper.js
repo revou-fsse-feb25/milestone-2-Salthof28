@@ -1,144 +1,196 @@
 import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
-// const choices = ['rock', 'paper', 'scissor'];
-const choices = [{name: 'rock', src: 'assets/rock.png'}, {name: 'paper', src: 'assets/paper.png'}, {name: 'scissor', src: 'assets/scissor.png'}];
-const players = document.querySelectorAll ('#player');
-const btnstart = document.getElementById ('btnstart');
-const result = document.getElementById ('result');
-const playerscore = document.getElementById ('playerscore');
-const computerscore = document.getElementById ('computerscore');
-const handcontainer = document.getElementById ('handcontainer');
-const handplayer = document.getElementById ('handplayer');
-const handcomputer = document.getElementById ('handcomputer');
-const btnchoices = document.getElementById ('btnchoices');
-const inptmaxscore = document.getElementById ('maxscore');
-const finalresult = document.getElementById ('finalresult');
-const nicknameplayer = document.getElementById ('nicknameplayer');
-let playerpoint = 0;
-let computerpoint = 0;
-let computer;
-let computerchoices;
-let angle = 0;
-let direction = 1;
-let interval;
-let maxscore = 0;
-let statuswin = false;
-const users = getUsers();
-const userlogin = statuslogin();
-disablestart();
-nickname();
-function nickname () {
-    const loginstatus = statuslogin();
-    nicknameplayer.textContent = loginstatus ? loginstatus.username.toUpperCase() : 'PLAYER';
-}
-function disablestart () {
-    if (maxscore == 0) {
-        btnstart.setAttribute('disabled', 'disabled');
-        handcontainer.style.display = 'none';
+
+class RockScissorPaper {
+    constructor () {
+        this.choices = [{name: 'rock', src: 'assets/rock.png'}, {name: 'paper', src: 'assets/paper.png'}, {name: 'scissor', src: 'assets/scissor.png'}];
+        this.players = document.querySelectorAll ('#player');
+        this.btnstart = document.getElementById ('btnstart');
+        this.result = document.getElementById ('result');
+        this.playerscore = document.getElementById ('playerscore');
+        this.computerscore = document.getElementById ('computerscore');
+        this.handcontainer = document.getElementById ('handcontainer');
+        this.handplayer = document.getElementById ('handplayer');
+        this.handcomputer = document.getElementById ('handcomputer');
+        this.btnchoices = document.getElementById ('btnchoices');
+        this.inptmaxscore = document.getElementById ('maxscore');
+        this.finalresult = document.getElementById ('finalresult');
+        this.nicknameplayer = document.getElementById ('nicknameplayer');
+        this.maxscoredisplay = document.getElementById('maxscoredisplay');
+        this.dataleaderboard = document.getElementById('dataleaderboard');
+
+        this.playerpoint = 0;
+        this.computerpoint = 0;
+        this.computer;
+        this.computerchoices;
+        this.angle = 0;
+        this.direction = 1;
+        this.interval;
+        this.maxscore = 0;
+        this.statuswin = false;
+
+        this.users = getUsers();
+        this.userlogin = statuslogin();
+
+        this.disablestart(this.maxscore);
+        this.nickname();
+        this.leaderboard();
     }
-    else {
-        btnstart.removeAttribute('disabled', 'disabled');
+    nickname () {
+        const loginstatus = this.userlogin;
+        this.nicknameplayer.textContent = loginstatus ? loginstatus.username.toUpperCase() : 'PLAYER';
     }
-}
-inptmaxscore.addEventListener('input', (x) => {
-    maxscore = x.target.value
-    disablestart();
-})
-btnstart.addEventListener ('click', () => {
-    playerpoint = computerpoint = 0;
-    playerscore.textContent = 0;
-    computerscore.textContent = 0;
-    result.textContent = "";
-    console.log(maxscore.value);
-    inptmaxscore.style.display = 'none';
-    btnstart.style.display = 'none';
-    finalresult.style.display = 'none';
-    handcontainer.style.display = '';
-    start();
-})
-function start () {
-    computer = Math.floor(Math.random()*choices.length);
-    computerchoices = choices[computer].name;
-    btnchoices.style.display = '';
-}
-for (let player of players) {
-    player.addEventListener ('click', () => {
-        let playerchoices = choices[player.value].name;
-        btnchoices.style.display = 'none';
-        animationhand();
-        console.log(playerchoices);
-        console.log(computerchoices);
-        setTimeout(() => {
-            if (playerchoices == computerchoices){
-                result.textContent = "DRAW";
-            }
-            else if ((playerchoices == 'rock' && computerchoices == 'scissor') || (playerchoices == 'paper' && computerchoices == 'rock') || (playerchoices == 'scissor' && computerchoices == 'paper')) {
-                playerpoint ++;
-                playerscore.textContent = playerpoint;
-                computerscore.textContent = computerpoint;
-                result.textContent = "WIN";
-            }
-            else {
-                computerpoint ++;
-                playerscore.textContent = playerpoint;
-                computerscore.textContent = computerpoint;
-                result.textContent = "LOSE";
-            }
-            handplayer.style.backgroundImage = `url(${choices[player.value].src})`;
-            handcomputer.style.backgroundImage = `url(${choices[computer].src})`;
-            endgame();
-        },2000)
-    })
-}
-function animationhand() {
-    handplayer.style.backgroundImage = handcomputer.style.backgroundImage = `url('assets/rock.png')`;
-    interval = setInterval(() => {
-        angle -= 10 * direction;
-        if (angle <= -60 || angle >= 0) {
-            direction *= -1;
+    disablestart (maxscore) {
+        if (maxscore == 0) {
+            this.btnstart.setAttribute('disabled', 'disabled');
+            this.handcontainer.style.display = 'none';
         }
-        handplayer.style.transform = `rotate(${angle}deg)`;
-        handcomputer.style.transform = `scaleX(-1) rotate(${angle}deg)`;
-    }, 38);
-    setTimeout(() => {
-        clearInterval(interval);
-        handcomputer.style.transform = `scaleX(-1) rotate(0deg)`;
-        handplayer.style.transform = `rotate(0deg)`;
-    },2000);
+        else {
+            this.btnstart.removeAttribute('disabled');
+            this.maxscore = maxscore;
+        }
+    }
+    setup () {
+        this.playerpoint = this.computerpoint = 0;
+        this.playerscore.textContent = 0;
+        this.computerscore.textContent = 0;
+        this.result.textContent = "";
+        console.log(this.maxscore);
+        this.inptmaxscore.style.display = 'none';
+        this.btnstart.style.display = 'none';
+        this.finalresult.style.display = 'none';
+        this.handcontainer.style.display = '';
+        this.maxscoredisplay.textContent = `Max Score Win: ${this.maxscore}`
+    }
+    start () {
+        this.computer = Math.floor(Math.random()*this.choices.length);
+        this.computerchoices = this.choices[this.computer].name;
+        this.btnchoices.style.display = '';
+        console.log(this.computerchoices);
+    }
+    processguess (value) {
+        let playerchoices = this.choices[value].name;
+        this.btnchoices.style.display = 'none';
+        this.animationhand();
+        console.log(playerchoices);
+        setTimeout(() => {
+            switch (true) {
+                case (playerchoices === this.computerchoices):
+                    this.result.textContent = "DRAW";
+                    break;
+                case (playerchoices === 'rock' && this.computerchoices === 'scissor'):
+                case (playerchoices === 'paper' && this.computerchoices === 'rock'):
+                case (playerchoices === 'scissor' && this.computerchoices === 'paper'):
+                    this.playerpoint ++;
+                    this.playerscore.textContent = this.playerpoint;
+                    this.computerscore.textContent = this.computerpoint;
+                    this.result.textContent = "WIN";
+                    break
+                default:
+                    this.computerpoint++;
+                    this.playerscore.textContent = this.playerpoint;
+                    this.computerscore.textContent = this.computerpoint;
+                    this.result.textContent = "LOSE";
+                    break;
+            }
+            this.handplayer.style.backgroundImage = `url(${this.choices[value].src})`;
+            this.handcomputer.style.backgroundImage = `url(${this.choices[this.computer].src})`;
+            this.endgame();
+        },2000)
+    }
+    animationhand () {
+        this.handplayer.style.backgroundImage = this.handcomputer.style.backgroundImage = `url('assets/rock.png')`;
+        this.interval = setInterval(() => {
+            this.angle -= 10 * this.direction;
+            if (this.angle <= -60 || this.angle >= 0) {
+                this.direction *= -1;
+            }
+            this.handplayer.style.transform = `rotate(${this.angle}deg)`;
+            this.handcomputer.style.transform = `scaleX(-1) rotate(${this.angle}deg)`;
+        }, 38);
+        setTimeout(() => {
+            clearInterval(this.interval);
+            this.handcomputer.style.transform = `scaleX(-1) rotate(0deg)`;
+            this.handplayer.style.transform = `rotate(0deg)`;
+        },2000);
+    }
+    endgame () {
+        if (this.playerpoint == this.maxscore){
+            this.finalresult.textContent = `PLAYER WIN`;
+            this.statuswin = true;
+            this.savedatagame(this.statuswin);
+            this.resetgame();
+        }
+        else if (this.computerpoint == this.maxscore){
+            this.finalresult.textContent = `COMPUTER WIN`;
+            this.statuswin = false;
+            this.savedatagame(this.statuswin);
+            this.resetgame();
+        }
+        else {
+            this.start ();
+        }
+    }
+    savedatagame(statuswin) {
+        if (this.userlogin) {
+            const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
+            const rockpaperscissor = user.rockpaperscissor;
+            statuswin ? rockpaperscissor.win += 1 : rockpaperscissor.lose += 1;
+            rockpaperscissor.tg += 1;
+            saveUsers(this.users);
+            login(user);
+        }
+    }
+    resetgame () {
+        this.handplayer.style.backgroundImage = this.handcomputer.style.backgroundImage = `url('assets/rock.png')`;
+        this.finalresult.style.display = '';
+        this.handcontainer.style.display = 'none';
+        this.inptmaxscore.style.display = '';
+        this.btnstart.style.display = '';
+        this.inptmaxscore.value = this.maxscore = 0;
+        this.maxscoredisplay.textContent = ``
+        this.dataleaderboard.innerHTML = '';
+        this.disablestart();
+        this.leaderboard();
+    }
+    leaderboard () {
+        if (this.users) {
+            const userssort = this.users.sort ((a, b) => b.rockpaperscissor.win - a.rockpaperscissor.win);
+            userssort.forEach((databaseusers, index) => {
+                const username = databaseusers.username;
+                const numberguessing = databaseusers.rockpaperscissor;
+                const trElement = document.createElement('tr');
+                const tdIndex = document.createElement('td');
+                tdIndex.textContent = index + 1;
+                const tdUsername = document.createElement('td');
+                tdUsername.textContent = username;
+                const tdLose = document.createElement('td');
+                tdLose.textContent = numberguessing.lose;
+                const tdWin = document.createElement('td');
+                tdWin.textContent = numberguessing.win; 
+                trElement.append(tdIndex, tdUsername, tdLose, tdWin);
+                this.dataleaderboard.appendChild(trElement);
+            });
+        }
+    }
 }
 
-function endgame() {
-    if (playerpoint == maxscore){
-        resetgame();
-        finalresult.textContent = `PLAYER WIN`;
-        statuswin = true;
-        savedatagame(statuswin);
-    }
-    else if (computerpoint == maxscore){
-        resetgame();
-        finalresult.textContent = `COMPUTER WIN`;
-        statuswin = false;
-        savedatagame(statuswin);
-    }
-    else {
-        start ();
-    }
-}
-function resetgame (){
-    handplayer.style.backgroundImage = handcomputer.style.backgroundImage = `url('assets/rock.png')`;
-    finalresult.style.display = '';
-    handcontainer.style.display = 'none';
-    inptmaxscore.style.display = '';
-    btnstart.style.display = '';
-    inptmaxscore.value = maxscore = 0;
-    disablestart();
-}
-function savedatagame (statuswin) {
-    if (userlogin) {
-        const user = users.find(user => user.username == userlogin.username && user.password == userlogin.password);
-        const rockpaperscissor = user.rockpaperscissor;
-        statuswin ? rockpaperscissor.win += 1 : rockpaperscissor.lose += 1;
-        rockpaperscissor.tg += 1;
-        saveUsers(users);
-        login(user);
-    }
+const rockscissorpaper = new RockScissorPaper();
+const inptmaxscore = rockscissorpaper.inptmaxscore;
+const btnstart = rockscissorpaper.btnstart;
+const players = rockscissorpaper.players;
+
+inptmaxscore.addEventListener('input', (x) => {
+    let maxscore = x.target.value
+    rockscissorpaper.disablestart(maxscore);
+})
+
+btnstart.addEventListener('click', () => {
+    rockscissorpaper.start();
+    rockscissorpaper.setup();
+})
+
+for (let player of players) {
+    player.addEventListener('click', () => {
+        rockscissorpaper.processguess(player.value);
+    })
 }

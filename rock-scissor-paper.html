@@ -52,6 +52,7 @@
             <h2 class="border-board">COMPUTER</h2>
         </section>
         <h2 id="result"></h2>
+        <p class="yellow-dark" id="maxscoredisplay"></p>
         <section id="btnchoices" style="display: none;">
             <button id="player" value= 0><img class="imgbtnchoices" src="assets/rock.png"></button>
             <button id="player" value= 1><img class="imgbtnchoices" src="assets/paper.png"></button>
@@ -66,12 +67,26 @@
         <button id="btnstart">Start Game</button>
         <section class="howplay column-container">
             <h2>HOW TO PLAY:</h2>
-            <ol>
+            <ol class="yellow-dark">
                 <li>Select "Max Point" to adjust the score limit.</li>
                 <li>Click the "Start Game" button to begin the game.</li>
                 <li>Choose rock, paper, or scissors to play against the computer.</li>
                 <li>If you reach the max score, you win. If not, you lose.</li>
             </ol>
+        </section>
+        <section class="leaderboard column-container">
+            <h2>Leaderboard</h2>
+            <table class="yellow-dark">
+                <thead>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Lose</th>
+                    <th>Win</th>
+                </thead>
+                <tbody id="dataleaderboard">
+
+                </tbody>
+            </table>
         </section>
     </main>
     <footer>
