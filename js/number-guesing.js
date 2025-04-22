@@ -7,40 +7,37 @@ class NumberGuessingGame {
         this.btnguess = document.getElementById('btnguess');
         this.guesser = document.getElementById('guesser');
         this.inptguess = document.getElementById('inptguess');
-
+        this.rangeguess = document.getElementById('rangeguess');
+        this.dataleaderboard = document.getElementById('dataleaderboard');
         this.attempt = 5;
         this.statuswin = false;
         this.secretnumber;
-
         this.users = getUsers();
         this.userlogin = statuslogin();
+        this.disablestart(this.rangeguess.value);
+        this.leaderboard ()
+    }
+    disablestart (range) {
+        console.log(range);
+        if (range == 0) {
+            this.btnstart.setAttribute('disabled', 'disabled');
+        }
+        else {
+            this.btnstart.removeAttribute('disabled')
+        }
     }   
     startgame () {
+        this.rangeguess.style.display = 'none';
         this.formguess.style.display = 'block';
         this.btnstart.style.display = 'none';
-        this.secretnumber = Math.floor(Math.random()*100) + 1;
-        this.guesser.textContent = "Guess the number I'm thinking of!";
+        this.secretnumber = Math.floor(Math.random()*this.rangeguess.value) + 1;
+        this.guesser.textContent = `Guess the number I'm thinking of! The range 1 - ${this.rangeguess.value}`;
         console.log (this.secretnumber);
     }
     processguess (inptguess) {
         if (inptguess != "") {
             if (inptguess != this.secretnumber) {
-                if (inptguess > this.secretnumber) {
-                    if (Math.abs (inptguess - this.secretnumber) <= 5) {
-                        this.guesser.textContent = "Lower it little more"
-                    }
-                    else {
-                        this.guesser.textContent = "The guessed number is too big"
-                    }
-                }
-                else {
-                    if (Math.abs (inptguess - this.secretnumber) <= 5) {
-                        this.guesser.textContent = "Raise it little more"
-                    }
-                    else {
-                        this.guesser.textContent = "The guessed number is too low"
-                    } 
-                }
+                this.evaluateguess(inptguess);
             }
             else {
                 this.guesser.textContent = `YOU WIN, The correct number is ${this.secretnumber}`;
@@ -55,6 +52,24 @@ class NumberGuessingGame {
             this.guesser.textContent = "You didn't input the guessed number";
         }
         this. inptguess.focus();
+    }
+    evaluateguess (inptguess) {
+        if (inptguess > this.secretnumber) {
+            if (Math.abs (inptguess - this.secretnumber) <= 5) {
+                this.guesser.textContent = "Lower it little more"
+            }
+            else {
+                this.guesser.textContent = "The guessed number is too big"
+            }
+        }
+        else {
+            if (Math.abs (inptguess - this.secretnumber) <= 5) {
+                this.guesser.textContent = "Raise it little more"
+            }
+            else {
+                this.guesser.textContent = "The guessed number is too low"
+            } 
+        }
     }
     chances () {
         if (this.attempt > 0) {
@@ -81,26 +96,55 @@ class NumberGuessingGame {
     reset () {
         this.formguess.style.display = 'none';
         this.btnstart.style.display = 'block';
-        this.btnstart.textContent = 'Play Again'
+        this.btnstart.textContent = 'Play Again';
+        this.rangeguess.style.display = '';
         this.attempt = 5;
+        this.dataleaderboard.innerHTML = ''; // remove tr from tbody
+        this.leaderboard();
+    }
+    leaderboard () {
+        if (this.users) {
+            const userssort = this.users.sort ((a, b) => b.numberguessing.win - a.numberguessing.win);
+            userssort.forEach((databaseusers, index) => {
+                const username = databaseusers.username;
+                const numberguessing = databaseusers.numberguessing;
+                const trElement = document.createElement('tr');
+                const tdIndex = document.createElement('td');
+                tdIndex.textContent = index + 1;
+                const tdUsername = document.createElement('td');
+                tdUsername.textContent = username;
+                const tdLose = document.createElement('td');
+                tdLose.textContent = numberguessing.lose;
+                const tdWin = document.createElement('td');
+                tdWin.textContent = numberguessing.win; 
+                trElement.append(tdIndex, tdUsername, tdLose, tdWin);
+                this.dataleaderboard.appendChild(trElement);
+            });
+        }
     }
 }
 // new NumberGuessingGame();
 const numberguessinggame = new NumberGuessingGame();
-const btnstart = document.getElementById('btnstart');
-const btnguess = document.getElementById('btnguess');
-const inptguess = document.getElementById('inptguess');
+const btnstart = numberguessinggame.btnstart;
+const btnguess = numberguessinggame.btnguess;
+const inptguess = numberguessinggame.inptguess;
+const rangeguess = numberguessinggame.rangeguess;
+
+rangeguess.addEventListener ('input', (x) => {
+    let range = x.target.value;
+    numberguessinggame.disablestart(range);
+});
 
 btnstart.addEventListener ('click', () => {
     numberguessinggame.startgame();
 });
 
-btnguess?.addEventListener('click', () => {
+btnguess.addEventListener('click', () => {
     numberguessinggame.processguess(inptguess.value);
     inptguess.value = "";
 });
 
-inptguess?.addEventListener('keydown', (event) => {
+inptguess.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
         numberguessinggame.processguess(inptguess.value);
