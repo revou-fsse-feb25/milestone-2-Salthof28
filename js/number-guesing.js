@@ -9,6 +9,7 @@ class NumberGuessingGame {
         this.inptguess = document.getElementById('inptguess');
         this.rangeguess = document.getElementById('rangeguess');
         this.dataleaderboard = document.getElementById('dataleaderboard');
+        this.attemptdisplay = document.getElementById('attemptdisplay');
         this.attempt = 5;
         this.statuswin = false;
         this.secretnumber;
@@ -32,12 +33,14 @@ class NumberGuessingGame {
         this.btnstart.style.display = 'none';
         this.secretnumber = Math.floor(Math.random()*this.rangeguess.value) + 1;
         this.guesser.textContent = `Guess the number I'm thinking of! The range 1 - ${this.rangeguess.value}`;
+        this.attemptdisplay.textContent = `Attempt: ${this.attempt}`;
         console.log (this.secretnumber);
     }
     processguess (inptguess) {
         if (inptguess != "") {
             if (inptguess != this.secretnumber) {
                 this.evaluateguess(inptguess);
+                this.chances();
             }
             else {
                 this.guesser.textContent = `YOU WIN, The correct number is ${this.secretnumber}`;
@@ -46,7 +49,6 @@ class NumberGuessingGame {
                 this.reset ();
             }
             inptguess = "";
-            this.chances();
         }
         else {
             this.guesser.textContent = "You didn't input the guessed number";
@@ -72,8 +74,9 @@ class NumberGuessingGame {
         }
     }
     chances () {
-        if (this.attempt > 0) {
+        if (this.attempt > 1) {
             this.attempt --;
+            this.attemptdisplay.textContent = `Attempt: ${this.attempt}`;
         }
         else {
             this.guesser.textContent = `You Lose, the correct is ${this.secretnumber}`;
@@ -81,7 +84,6 @@ class NumberGuessingGame {
             this.savedatagame(this.statuswin);
             this.reset();
         }
-        console.log(this.attempt);
     }
     savedatagame (statuswin) {
         if (this.userlogin) {
@@ -101,6 +103,7 @@ class NumberGuessingGame {
         this.attempt = 5;
         this.dataleaderboard.innerHTML = ''; // remove tr from tbody
         this.leaderboard();
+        this.attemptdisplay.textContent = ``;
     }
     leaderboard () {
         if (this.users) {
@@ -134,16 +137,13 @@ rangeguess.addEventListener ('input', (x) => {
     let range = x.target.value;
     numberguessinggame.disablestart(range);
 });
-
 btnstart.addEventListener ('click', () => {
     numberguessinggame.startgame();
 });
-
 btnguess.addEventListener('click', () => {
     numberguessinggame.processguess(inptguess.value);
     inptguess.value = "";
 });
-
 inptguess.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault();
