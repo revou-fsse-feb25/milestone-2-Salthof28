@@ -1,18 +1,30 @@
+@font-face {
+    font-family: "inter";
+    src: url(../fonts/inter/Inter-VariableFont_opsz\,wght.ttf);
+}
+@font-face {
+    font-family: "teko";
+    src: url(../fonts/teko/Teko-VariableFont_wght.ttf);
+}
 html,body {
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
+h1, h2 {
+    font-family: 'teko';
+}
 h2 {
-    margin: 4% 0;
+    margin: 8% 0 0 0;
     padding: 0;
 }
 ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    gap: 20px;
+    font-family: 'inter';
 }
 main {
     min-height: 100vh;
@@ -57,10 +69,21 @@ button:hover {
 #profileuser {
     align-items: center;
     justify-content: center;
+    text-align: center;
+    width: 30rem;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 1%;
     margin: 1% 5%;
+}
+#profileuser div {
+    align-items: center;
+    justify-content: center;
+}
+#profileuser div img {
+    border-radius: 1rem;
+    width: 15rem;
+    padding: 4%;
 }
 #successcreate {
     text-align: center;
@@ -84,5 +107,15 @@ footer {
 @media only screen and (max-width: 712px) {
     .loginform form {
         width: 17rem;
+    }
+    #profileuser {
+        width: 15rem;
+        font-size: 0.8rem;
+    }
+    #profileuser div img {
+        width: 12rem;
+    }
+    ul {
+        gap: 8px;
     }
 }

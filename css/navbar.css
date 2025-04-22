@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "dynapuff";
+    src: url(../fonts/DynaPuff/DynaPuff-VariableFont_wdth\,wght.ttf);
+}
 .column-container {
     display: flex;
     flex-direction: column;
@@ -48,6 +52,7 @@ header nav a p, header section p {
     font-size: 1rem;
     color: rgb(255, 145, 77);
     -webkit-text-stroke: 0.2px rgb(201, 253, 6);
+    font-family: 'dynapuff';
     margin: 0;
     padding: 0;
 }

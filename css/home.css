@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "rubik wet paint";
+    src: url(../fonts/Rubik_Wet_Paint/RubikWetPaint-Regular.ttf);
+}
 html,body {
     scroll-behavior: smooth;
     margin: 0;
@@ -12,13 +16,25 @@ h1, h2, p {
 }
 h1 {
     font-size: 6rem;
+    font-family: 'rubik wet paint';
+    color: rgb(255, 145, 77);
+    -webkit-text-stroke: 0.2px rgb(201, 253, 6);
+    text-shadow: 0 0 5px white, 0 0 10px rgb(97, 180, 89);
 }
 h2 {
     font-size: 5rem;
+    font-family: 'dynapuff';
+}
+h2 span {
+    font-family: 'rubik wet paint';
+    color: rgb(255, 145, 77);
+    -webkit-text-stroke: 0.2px rgb(204, 255, 0);
+    text-shadow: 0 0 5px white, 0 0 15px rgb(69, 212, 112);
 }
 p, ul {
     font-size: 2rem;
     margin: 0.4rem;
+    font-family: 'dynapuff';
 }
 a {
     text-decoration: none;
