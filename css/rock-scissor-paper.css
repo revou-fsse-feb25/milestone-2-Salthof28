@@ -11,6 +11,9 @@ html,body {
 .white {
     color: white;
 }
+.yellow-dark {
+    color: rgb(212, 175, 55)
+}
 a {
     text-decoration: none;
 }
@@ -121,15 +124,49 @@ button:active {
     width: 4rem;
 }
 .howplay {
-    padding: 2%;
+    background-color: rgb(116, 17, 17);
+    margin-top: 2%;
+    padding: 1% 2%;
+    text-align: center;
+    /* border: solid black 1px; */
+    border-radius: 1rem;
+    box-shadow: 8px 8px 0 rgb(122, 90, 71);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.howplay:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(122, 90, 71);
+}
+.howplay h2 {
+    margin: 2% 0;
 }
 .howplay ol {
+    text-align: center;
     margin: 0;
     padding: 0;
-    padding-left: 4%;
     width: 80%;
     text-align: justify;
-    color: rgb(212, 175, 55);
+    list-style-position: inside;
+}
+.leaderboard h2 {
+    margin: 6% 0;
+}
+.leaderboard table {
+    background-color: rgb(116, 17, 17);
+    min-width: 15rem;
+    /* border: solid black 1px; */
+    text-align: center;
+    box-shadow: 6px 6px 0 rgb(122, 90, 71);
+    padding: 4%;
+    border-spacing: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leaderboard table:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(122, 90, 71);
+}
+td {
+    border-top: 1px solid #000000;
 }
 @media only screen and (max-width: 1228px) {
     h1 {
@@ -165,6 +202,9 @@ button:active {
     .border-board{
         width: 16rem;
     }
+    .howplay {
+        width: 25rem;
+    }
 }
 @media only screen and (max-width: 712px) {
     main {
@@ -187,5 +227,8 @@ button:active {
     }
     .scoreboard .border-computer + .border-board {
         order: 1;
+    }
+    .howplay {
+        width: 18rem;
     }
 }
