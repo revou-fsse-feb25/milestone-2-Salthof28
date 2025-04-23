@@ -1,49 +1,97 @@
 import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
-const start = document.getElementById ('start');
-const plus = document.getElementById ('plus');
-let scoretext = document.getElementById ('scoretext');
-let timetext = document.getElementById ('time');
-let score = 0;
-let time = 6;
-const users = getUsers();
-const userlogin = statuslogin();
 
-start.addEventListener ('click', function () {
-    score = 0;
-    timer ();
-    scoretext.textContent = "SCORE";
-    start.style.display = "none";
-    plus.style.display = "block";
-})
-
-plus.addEventListener ('click', function () {
-    score ++;
-    scoretext.textContent = score;
-})
-
-function timer () {
-    if (time > 0) {
-        time --;
-        timetext.textContent = time;
-        setTimeout(timer, 1000); 
+class FastClick {
+    constructor () {
+        this.btnstart = document.getElementById ('start');
+        this.btnclickme = document.getElementById ('plus');
+        this.scoretext = document.getElementById ('scoretext');
+        this.timetext = document.getElementById ('time');
+        this.dataleaderboard = document.getElementById ('dataleaderboard');
+        this.initialTimer = 10;
+        this.score = 0;
+        this.timer = this.initialTimer;
+        this.users = getUsers();
+        this.userlogin = statuslogin();
+        this.interval = null;
+        this.leaderboard();
     }
-    else {
-        time = 10;
-        scoretext.textContent = `Your score is ${score}`;
-        timetext.textContent = "TIMEOUT";
-        start.style.display = "block";
-        plus.style.display = "none";
-        savedatagame(score);
+
+    startgame () {
+        this.score = 0;
+        this.scoretext.textContent = "SCORE";
+        this.btnstart.style.display = "none";
+        this.btnclickme.style.display = "block";
+        this.timetext.textContent = `Timer: ${this.timer}`;
+        this.timergame ();
     }
+
+    timergame () {
+        this.interval = setInterval (() => {
+            if (this.timer > 1) {
+                this.timer --;
+                this.timetext.textContent = `Timer: ${this.timer}`;
+            }
+            else {
+                this.scoretext.textContent = `Your score is ${this.score}`;
+                this.savedatagame(this.score);
+                this.reset();
+            }
+        }, 1000)
+    }
+    countingscore () {
+        this.score ++;
+        this.scoretext.textContent = this.score;
+    }
+
+    savedatagame (statuswin) {
+        if (this.userlogin) {
+            const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
+            const fastclicker = user.fastclicker;
+            fastclicker.hs = Math.max(this.score, fastclicker.hs);
+            fastclicker.tg += 1;
+            saveUsers(this.users);
+            login(user);
+        }
+        this.reset();
+    }
+    reset () {
+        clearInterval(this.interval);
+        this.timer = this.initialTimer;
+        this.timetext.textContent = "TIMEOUT";
+        this.btnstart.style.display = "block";
+        this.btnclickme.style.display = "none";
+        this.dataleaderboard.textContent = "";
+        this.leaderboard();
+    }
+    leaderboard () {
+        if (this.users) {
+            const userssort = this.users.sort ((a, b) => b.fastclicker.hs - a.fastclicker.hs);
+            userssort.forEach((databaseusers, index) => {
+                const username = databaseusers.username;
+                const fastclicker = databaseusers.fastclicker;
+                const trElement = document.createElement('tr');
+                const tdIndex = document.createElement('td');
+                tdIndex.textContent = index + 1;
+                const tdUsername = document.createElement('td');
+                tdUsername.textContent = username;
+                const tdHighScore = document.createElement('td');
+                tdHighScore.textContent = fastclicker.hs;
+                trElement.append(tdIndex, tdUsername, tdHighScore);
+                this.dataleaderboard.appendChild(trElement);
+            });
+        }
+    }
+
 }
 
-function savedatagame (score) {
-    if (userlogin) {
-        const user = users.find(user => user.username == userlogin.username && user.password == userlogin.password);
-        const fastclicker = user.fastclicker;
-        fastclicker.hs = Math.max(score, fastclicker.hs); // comparison score, if "score" is higher then "fastclicker.hg". Value "score" store to "fastclicker.hg".
-        fastclicker.tg += 1;
-        saveUsers(users);
-        login(user);
-    }
-}
+const fastclick = new FastClick();
+const btnstart = fastclick.btnstart;
+const btnclickme = fastclick.btnclickme;
+
+btnstart.addEventListener('click', () => {
+    fastclick.startgame();
+});
+
+btnclickme.addEventListener('click', () => {
+    fastclick.countingscore();
+})
