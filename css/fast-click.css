@@ -76,14 +76,49 @@ button:hover {
     margin-top: 5%;
 }
 .howplay {
-    padding: 2%;
+    background-color: rgb(255, 187, 139);
+    margin-top: 2%;
+    padding: 1% 2%;
+    text-align: center;
+    /* border: solid black 1px; */
+    border-radius: 1rem;
+    box-shadow: 8px 8px 0 rgb(0, 0, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.howplay:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(0, 0, 0);
+}
+.howplay h2 {
+    margin: 2% 0;
 }
 .howplay ol {
+    text-align: center;
     margin: 0;
     padding: 0;
-    padding-left: 4%;
     width: 80%;
     text-align: justify;
+    list-style-position: inside;
+}
+.leaderboard h2 {
+    margin: 6% 0;
+}
+.leaderboard table {
+    background-color: rgb(255, 187, 139);
+    min-width: 15rem;
+    /* border: solid black 1px; */
+    text-align: center;
+    box-shadow: 6px 6px 0 rgb(0, 0, 0);
+    padding: 4%;
+    border-spacing: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leaderboard table:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(0, 0, 0);
+}
+td {
+    border-top: 1px solid #000000;
 }
 @media only screen and (max-width: 1228px) {
     h1 {
@@ -119,6 +154,9 @@ button:hover {
         width: 8rem;
         height: 8rem;
     }
+    .howplay {
+        width: 25rem;
+    }
 }
 @media only screen and (max-width: 712px) {
     main {
@@ -127,5 +165,8 @@ button:hover {
     }
     h1 {
         font-size: 1.5rem;
+    }
+    .howplay {
+        width: 18rem;
     }
 }
