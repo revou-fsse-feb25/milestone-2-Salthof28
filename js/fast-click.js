@@ -7,13 +7,15 @@ class FastClick {
         this.scoretext = document.getElementById ('scoretext');
         this.timetext = document.getElementById ('time');
         this.dataleaderboard = document.getElementById ('dataleaderboard');
+        this.howplaycontainer = document.getElementById('howplay');
+        this.leaderboardcontainer = document.getElementById('leaderboard');
         this.initialTimer = 10;
         this.score = 0;
         this.timer = this.initialTimer;
         this.users = getUsers();
         this.userlogin = statuslogin();
         this.interval = null;
-        this.leaderboard();
+        this.leaderboardcontainer.style.display = 'none';
     }
 
     startgame () {
@@ -21,6 +23,8 @@ class FastClick {
         this.scoretext.textContent = "SCORE";
         this.btnstart.style.display = "none";
         this.btnclickme.style.display = "block";
+        this.leaderboardcontainer.style.display = 'none';
+        this.howplaycontainer.style.display = 'none';
         this.timetext.textContent = `Timer: ${this.timer}`;
         this.timergame ();
     }
@@ -61,6 +65,7 @@ class FastClick {
         this.btnstart.style.display = "block";
         this.btnclickme.style.display = "none";
         this.dataleaderboard.textContent = "";
+        this.leaderboardcontainer.style.display = 'flex';
         this.leaderboard();
     }
     leaderboard () {

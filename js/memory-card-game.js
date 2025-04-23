@@ -10,6 +10,8 @@ class MemoryPokemonGame {
         this.resultgame = document.getElementById('resultgame');
         this.timerdisplay = document.getElementById('timerdisplay');
         this.dataleaderboard = document.getElementById('dataleaderboard');
+        this.howplaycontainer = document.getElementById('howplay');
+        this.leaderboardcontainer = document.getElementById('leaderboard');
         this.users = getUsers();
         this.userlogin = statuslogin();
         this.timer = this.initialTimer;
@@ -18,11 +20,12 @@ class MemoryPokemonGame {
         this.statuswin = false;
         this.countsamechard = 0;
         this.interval = null;
-        this.leaderboard();
+        this.leaderboardcontainer.style.display = 'none';
     }
     startgame () {
         this.resultgame.style.display = 'none';
-        
+        this.leaderboardcontainer.style.display = 'none';
+        this.howplaycontainer.style.display = 'none';
         const shufflecards = this.datacards.sort(() => Math.random() - 0.5); // To shuffle array data in the database card, the default form ascending sort is .sort((a, b) => a - b). When a - b returns a positive value, the first element (a) is placed after the second (b). If the result is negative, the order remains unchanged.
         shufflecards.forEach((src) => {
             const cardelement = document.createElement('div');
@@ -115,6 +118,7 @@ class MemoryPokemonGame {
         this.reset();
     }
     reset () {
+        clearInterval(this.interval);
         const cards = document.querySelectorAll('#card');
         cards.forEach(card => card.remove());
         this.countsamechard = 0;
@@ -123,8 +127,8 @@ class MemoryPokemonGame {
         this.timerdisplay.textContent = "";
         this.resultgame.style.display = '';
         this.dataleaderboard.textContent = '';
+        this.leaderboardcontainer.style.display = 'flex';
         this.timer = this.initialTimer;
-        clearInterval(this.interval);
         this.statuswin = false;
         this.leaderboard();
     }

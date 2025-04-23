@@ -10,13 +10,15 @@ class NumberGuessingGame {
         this.rangeguess = document.getElementById('rangeguess');
         this.dataleaderboard = document.getElementById('dataleaderboard');
         this.attemptdisplay = document.getElementById('attemptdisplay');
+        this.howplaycontainer = document.getElementById('howplay');
+        this.leaderboardcontainer = document.getElementById('leaderboard');
         this.attempt = 5;
         this.statuswin = false;
         this.secretnumber;
         this.users = getUsers();
         this.userlogin = statuslogin();
         this.disablestart(this.rangeguess.value);
-        this.leaderboard ()
+        this.leaderboardcontainer.style.display = 'none';
     }
     disablestart (range) {
         console.log(range);
@@ -28,6 +30,8 @@ class NumberGuessingGame {
         }
     }   
     startgame () {
+        this.leaderboardcontainer.style.display = 'none';
+        this.howplaycontainer.style.display = 'none';
         this.rangeguess.style.display = 'none';
         this.formguess.style.display = 'block';
         this.btnstart.style.display = 'none';
@@ -102,8 +106,9 @@ class NumberGuessingGame {
         this.rangeguess.style.display = '';
         this.attempt = 5;
         this.dataleaderboard.innerHTML = ''; // remove tr from tbody
-        this.leaderboard();
         this.attemptdisplay.textContent = ``;
+        this.leaderboardcontainer.style.display = 'flex';
+        this.leaderboard();
     }
     leaderboard () {
         if (this.users) {

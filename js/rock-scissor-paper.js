@@ -17,6 +17,8 @@ class RockScissorPaper {
         this.nicknameplayer = document.getElementById ('nicknameplayer');
         this.maxscoredisplay = document.getElementById('maxscoredisplay');
         this.dataleaderboard = document.getElementById('dataleaderboard');
+        this.howplaycontainer = document.getElementById('howplay');
+        this.leaderboardcontainer = document.getElementById('leaderboard');
 
         this.playerpoint = 0;
         this.computerpoint = 0;
@@ -33,7 +35,7 @@ class RockScissorPaper {
 
         this.disablestart(this.maxscore);
         this.nickname();
-        this.leaderboard();
+        this.leaderboardcontainer.style.display = 'none';
     }
     nickname () {
         const loginstatus = this.userlogin;
@@ -62,6 +64,8 @@ class RockScissorPaper {
         this.maxscoredisplay.textContent = `Max Score Win: ${this.maxscore}`
     }
     start () {
+        this.leaderboardcontainer.style.display = 'none';
+        this.howplaycontainer.style.display = 'none';
         this.computer = Math.floor(Math.random()*this.choices.length);
         this.computerchoices = this.choices[this.computer].name;
         this.btnchoices.style.display = '';
@@ -149,6 +153,7 @@ class RockScissorPaper {
         this.inptmaxscore.value = this.maxscore = 0;
         this.maxscoredisplay.textContent = ``
         this.dataleaderboard.innerHTML = '';
+        this.leaderboardcontainer.style.display = 'flex';
         this.disablestart();
         this.leaderboard();
     }
