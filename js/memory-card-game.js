@@ -1,122 +1,160 @@
 import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
-const rawcards = ['assets/memory-pokemon-game/pikachu.png', 'assets/memory-pokemon-game/charizard.png', 'assets/memory-pokemon-game/charmander.png', 'assets/memory-pokemon-game/dragonair.png', 'assets/memory-pokemon-game/evee.png', 'assets/memory-pokemon-game/gengar.png', 'assets/memory-pokemon-game/squirtle.png', 'assets/memory-pokemon-game/umbreon.png'];
-const datacards = [...rawcards, ...rawcards];
 
-const containercardgame = document.getElementById('containercardgame');
-const btnstartgame = document.getElementById('btnstartgame');
-const resultgame = document.getElementById('resultgame');
-const timerdisplay = document.getElementById('timerdisplay');
-const users = getUsers();
-const userlogin = statuslogin();
-let timer = 60;
-let firstcard = null;
-let lockclick = false; // use for lock click if two card authencation
-let statuswin = false;
-let countsamechard = 0;
-// console.log(card);
-function startgame () {
-    const shufflecards = datacards.sort(() => Math.random() - 0.5); // To shuffle array data in the database card, the default form ascending sort is .sort((a, b) => a - b). When a - b returns a positive value, the first element (a) is placed after the second (b). If the result is negative, the order remains unchanged.
-    shufflecards.forEach((src) => {
-        const cardelement = document.createElement('div');
-        cardelement.id = 'card';
-        const frontelement = document.createElement('div');
-        frontelement.classList.add('front');
-        const backelement = document.createElement('div');
-        backelement.classList.add('back');
-        const imgcard = document.createElement('img');
-        imgcard.src = src
+class MemoryPokemonGame {
+    constructor() {
+        this.rawcards = ['assets/memory-pokemon-game/pikachu.png', 'assets/memory-pokemon-game/charizard.png', 'assets/memory-pokemon-game/charmander.png', 'assets/memory-pokemon-game/dragonair.png', 'assets/memory-pokemon-game/evee.png', 'assets/memory-pokemon-game/gengar.png', 'assets/memory-pokemon-game/squirtle.png', 'assets/memory-pokemon-game/umbreon.png'];
+        this.datacards = [...this.rawcards, ...this.rawcards];
+        this.initialTimer = 60;
+        this.containercardgame = document.getElementById('containercardgame');
+        this.btnstartgame = document.getElementById('btnstartgame');
+        this.resultgame = document.getElementById('resultgame');
+        this.timerdisplay = document.getElementById('timerdisplay');
+        this.dataleaderboard = document.getElementById('dataleaderboard');
+        this.users = getUsers();
+        this.userlogin = statuslogin();
+        this.timer = this.initialTimer;
+        this.firstcard = null;
+        this.lockclick = false; // use for lock click if two card authencation
+        this.statuswin = false;
+        this.countsamechard = 0;
+        this.interval = null;
+        this.leaderboard();
+    }
+    startgame () {
+        this.resultgame.style.display = 'none';
+        
+        const shufflecards = this.datacards.sort(() => Math.random() - 0.5); // To shuffle array data in the database card, the default form ascending sort is .sort((a, b) => a - b). When a - b returns a positive value, the first element (a) is placed after the second (b). If the result is negative, the order remains unchanged.
+        shufflecards.forEach((src) => {
+            const cardelement = document.createElement('div');
+            cardelement.id = 'card';
+            const frontelement = document.createElement('div');
+            frontelement.classList.add('front');
+            const backelement = document.createElement('div');
+            backelement.classList.add('back');
+            const imgcard = document.createElement('img');
+            imgcard.src = src
+    
+            backelement.appendChild(imgcard);
+            cardelement.append(backelement, frontelement); // same appendChild but can made two child
+            this.containercardgame.appendChild(cardelement);
+        });
 
-        backelement.appendChild(imgcard);
-        cardelement.append(backelement, frontelement); // same appendChild but can made two child
-        containercardgame.appendChild(cardelement);
-    })
-
-    timergame();
-    function timergame () {
-        if (!statuswin) {
-            if (timer > 0) {
-                timer --;
-                timerdisplay.textContent = `timer: ${timer}`;
-                setTimeout(timergame, 1000);
-            }
-            else {
-                endgame(statuswin);
-            }
-        }
-        else {
+        const cards = document.querySelectorAll('#card');
+        cards.forEach((card) => {
+            card.addEventListener('click', () => {
+                this.processgame(card)
+            })
+        });
+        this.timerdisplay.textContent = `timer: ${this.timer}`;
+        this.timergame();
+    }
+    processgame (card) {
+        if (this.lockclick || card.classList.contains('active')) {
             return;
         }
-    }
-
-    const cards = document.querySelectorAll('#card');
-    cards.forEach((card) => {
-        card.addEventListener('click', () => {
-            if (lockclick || card.classList.contains('active')) {
-                return;
+        else {
+            if (!this.firstcard) {
+                card.classList.add('active');
+                this.firstcard = card;
             }
             else {
-                if (!firstcard) {
-                    card.classList.add('active');
-                    firstcard = card;
+                this.checkcard(card);
+            }
+        }
+    }
+    timergame () {
+        this.interval = setInterval (() => {
+            if (!this.statuswin) {
+                if (this.timer > 0) {
+                    this.timer --;
+                    this.timerdisplay.textContent = `timer: ${this.timer}`;
                 }
                 else {
-                    checkcard(card);
+                    this.endgame(this.statuswin);
+                    clearInterval(this.interval);
                 }
             }
-        })
-    })
-    function checkcard (card) {
+            else {
+                clearInterval(this.interval);
+            }
+        }, 1000)
+    }
+    checkcard (card) {
         card.classList.add('active');
         const secondcard = card;
-        const firstcardimg = firstcard.querySelector('img').src;
+        const firstcardimg = this.firstcard.querySelector('img').src;
         const secondcardimg = secondcard.querySelector('img').src;
         if (firstcardimg == secondcardimg) {
-            firstcard = null;
-            countsamechard += 1;
-            countsamechard == rawcards.length && endgame(statuswin = true);
+            this.firstcard = null;
+            this.countsamechard += 1;
+            this.countsamechard == this.rawcards.length && this.endgame(this.statuswin = true);
         }
         else {
-            lockclick = true;
+            this.lockclick = true;
             setTimeout (() => {
-                firstcard.classList.remove('active');
+                this.firstcard.classList.remove('active');
                 secondcard.classList.remove('active');
-                firstcard = null;
-                lockclick = false;
+                this.firstcard = null;
+                this.lockclick = false;
             }, 1000)
         }
     }
-
-    function endgame (statuswin) {
-        statuswin ? resultgame.textContent = 'YOU WIN' : resultgame.textContent = 'YOU LOSE';
-        savedatagame (statuswin)
+    endgame (statuswin) {
+        statuswin ? this.resultgame.textContent = 'YOU WIN' : this.resultgame.textContent = 'YOU LOSE';
+        this.savedatagame (statuswin)
     }
-    function reset () {
-        cards.forEach(card => card.remove());
-        countsamechard = 0;
-        btnstartgame.style.display = '';
-        btnstartgame.textContent = 'Play Again';
-        resultgame.style.display = '';
-        timerdisplay.textContent = "";
-        timer = 60;
-    }
-    function savedatagame (statuswin) {
-        if (userlogin) {
-            const user = users.find(user => user.username == userlogin.username && user.password == userlogin.password);
+    savedatagame (statuswin) {
+        if (this.userlogin) {
+            const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
             const pokemonmemorygame = user.pokemonmemorygame;
             statuswin ? pokemonmemorygame.win += 1 : pokemonmemorygame.lose += 1;
             pokemonmemorygame.tg += 1;
-            saveUsers(users);
+            saveUsers(this.users);
             login(user);
         }
-        reset();
+        this.reset();
     }
-    return;
+    reset () {
+        const cards = document.querySelectorAll('#card');
+        cards.forEach(card => card.remove());
+        this.countsamechard = 0;
+        this.btnstartgame.style.display = '';
+        this.btnstartgame.textContent = 'Play Again';
+        this.timerdisplay.textContent = "";
+        this.resultgame.style.display = '';
+        this.dataleaderboard.textContent = '';
+        this.timer = this.initialTimer;
+        clearInterval(this.interval);
+        this.statuswin = false;
+        this.leaderboard();
+    }
+    leaderboard () {
+        if (this.users) {
+            const userssort = this.users.sort ((a, b) => b.pokemonmemorygame.win - a.pokemonmemorygame.win);
+            userssort.forEach((databaseusers, index) => {
+                const username = databaseusers.username;
+                const pokemonmemorygame = databaseusers.pokemonmemorygame;
+                const trElement = document.createElement('tr');
+                const tdIndex = document.createElement('td');
+                tdIndex.textContent = index + 1;
+                const tdUsername = document.createElement('td');
+                tdUsername.textContent = username;
+                const tdLose = document.createElement('td');
+                tdLose.textContent = pokemonmemorygame.lose;
+                const tdWin = document.createElement('td');
+                tdWin.textContent = pokemonmemorygame.win; 
+                trElement.append(tdIndex, tdUsername, tdLose, tdWin);
+                this.dataleaderboard.appendChild(trElement);
+            });
+        }
+    }
 }
+
+const memorypokemongame = new MemoryPokemonGame();
+const btnstartgame = memorypokemongame.btnstartgame;
 
 btnstartgame.addEventListener('click', () => {
     btnstartgame.style.display = 'none';
-    resultgame.style.display = 'none';
-    statuswin = false;
-    startgame();  
+    memorypokemongame.startgame();
 })
 
