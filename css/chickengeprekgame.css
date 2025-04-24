@@ -115,6 +115,15 @@ button:active {
     margin-top: 2%;
     z-index: 1;
 }
+.game-box .controller-mobile {
+    position: absolute;
+    display: none;
+    width: 90%;
+    bottom: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
 .game-box #player{
     position: absolute;
     background-image: url(../assets/chicken-geprek-game/chicken.gif);
@@ -240,7 +249,9 @@ td {
         width: 3rem;
         height: 3rem;
     }
-
+    .game-box .controller-mobile {
+        display: flex;
+    }
 }
 @media only screen and (max-width: 712px) {
     main {
