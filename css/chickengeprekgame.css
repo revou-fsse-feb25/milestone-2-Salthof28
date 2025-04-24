@@ -1,0 +1,272 @@
+@font-face {
+    font-family: "start 2p";
+    src: url(../fonts/Press_Start_2P/PressStart2P-Regular.ttf);
+}
+html,body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.white {
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+body {
+    background-image: linear-gradient(180deg, #74EBD5 0%, #9FACE6 50%, #ebd5df 100%);
+}
+footer {
+    background-color: black;
+    padding: 0.11rem;
+    text-align: center;
+    color: white;
+}
+main {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: cursive;
+}
+h1, h2, p {
+    margin: 0;
+}
+h1 {
+    font-size: 3.5rem;
+    text-shadow: 3px 3px 3px yellow;
+    font-family: "start 2p";
+    text-align: center;
+}
+h2 {
+    font-size: 2.5rem;
+    text-shadow: 3px 3px 3px yellow;
+    font-family: "start 2p";
+}
+p, ul {
+    font-size: 1.5rem;
+    margin: 0.4rem;
+}
+a {
+    text-decoration: none;
+}
+input {
+    border-radius: 0.5rem;
+}
+button {
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: yellow;
+}
+button:hover {
+    box-shadow: 0 0 20px rgb(209, 163, 11);
+}
+button:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 0, 0.7);
+    box-shadow: inset 0 0 5px rgba(255, 255, 0, 0.3);
+}
+.game-box {
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: 70vw;
+    height: 40vh;
+    margin-top: 2%;
+    background-image: url(../assets/chicken-geprek-game/environment-game.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.game-box #gameover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(185, 172, 86);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.game-box #gameover img {
+    width: 15rem;
+}
+.game-box #gameover button {
+    margin-top: 1%;
+}
+.game-box #statusplayer {
+    position: absolute;
+    background-color: rgba(0, 5, 3, 0.473);
+    /* border: #000000 solid 1px; */
+    border-radius: 0.5rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+    color: white;
+    display: none;
+}
+.game-box #btnstart {
+    margin-top: 2%;
+    z-index: 1;
+}
+.game-box #player{
+    position: absolute;
+    background-image: url(../assets/chicken-geprek-game/chicken.gif);
+    background-size: cover;
+    width: 4rem;
+    height: 6rem;
+    /* transform: translateX(-50%); */
+    left: 50%;
+    bottom: 1rem;
+}
+.game-box #fallingobject {
+    position: absolute;
+    /* background-image: url(../assets/chicken-geprek-game/cobek.png); */
+    background-size: 100% 100%;
+    width: 6rem;
+    height: 6rem;
+}
+.howplay {
+    background-color: rgb(125, 178, 199);
+    margin-top: 2%;
+    padding: 1% 2%;
+    text-align: center;
+    /* border: solid black 1px; */
+    border-radius: 1rem;
+    box-shadow: 8px 8px 0 rgb(0, 0, 0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.howplay:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(0, 0, 0);
+}
+.howplay h2 {
+    margin: 2% 0;
+}
+.howplay ol {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 80%;
+    text-align: justify;
+    list-style-position: inside;
+}
+.leaderboard h2 {
+    margin: 6% 0;
+}
+.leaderboard table {
+    background-color: rgb(125, 178, 199);
+    min-width: 15rem;
+    /* border: solid black 1px; */
+    text-align: center;
+    box-shadow: 6px 6px 0 rgb(0, 0, 0);
+    padding: 4%;
+    border-spacing: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leaderboard table:hover {
+    transform: scale(0.99);
+    box-shadow: 4px 4px 0 rgb(0, 0, 0);
+}
+td {
+    border-top: 1px solid #000000;
+}
+
+@media only screen and (max-width: 2304px) {
+    .game-box #player{
+        width: 3rem;
+        height: 4.5rem;
+    }
+    .game-box #fallingobject {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+@media only screen and (max-width: 1228px) {
+    h1 {
+        font-size: 3rem;
+        padding-top: 2%;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    p, ul {
+        font-size: 1rem;
+        margin: 0.4rem;
+    }
+    .game-box #gameover img {
+        width: 10rem;
+    }
+}
+@media only screen and (max-width: 980px) {
+    h1, h2, p {
+        margin: 0;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1rem;
+    }
+    p, ul {
+        font-size: 0.5rem;
+        margin: 0.4rem;
+    }
+    button {
+        font-size: 1rem;
+    }
+    .game-box {
+        height: 25vh;
+        width: 85vw;
+    }
+    .game-box #formguess #inptguess {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .howplay {
+        width: 25rem;
+    }
+    .game-box #player{
+        width: 2rem;
+        height: 3rem;
+    }
+    .game-box #fallingobject {
+        width: 3rem;
+        height: 3rem;
+    }
+
+}
+@media only screen and (max-width: 712px) {
+    main {
+        text-align: center;
+        padding-top: 20%;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    .game-box {
+        width: 90vw;
+    }
+    .howplay {
+        width: 18rem;
+    }
+    .game-box #player{
+        width: 1rem;
+        height: 1.5rem;
+    }
+    .game-box #fallingobject {
+        width: 2rem;
+        height: 2rem;
+    }
+    .game-box #gameover img {
+        width: 6rem;
+    }
+}
+
+
