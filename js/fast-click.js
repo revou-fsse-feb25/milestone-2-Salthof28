@@ -47,7 +47,7 @@ class FastClick {
         this.scoretext.textContent = this.score;
     }
 
-    savedatagame (statuswin) {
+    savedatagame () {
         if (this.userlogin) {
             const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
             const fastclicker = user.fastclicker;
