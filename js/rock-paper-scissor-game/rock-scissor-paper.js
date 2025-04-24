@@ -1,4 +1,4 @@
-import { getUsers ,saveUsers,statuslogin, login } from "./auth.js";
+import { getUsers ,saveUsers,statuslogin, login } from "../auth.js";
 
 class RockScissorPaper {
     constructor () {
