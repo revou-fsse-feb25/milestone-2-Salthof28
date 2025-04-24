@@ -35,7 +35,7 @@ header {
     background-color: rgba(51, 50, 50, 0.329);
     padding: 0.4rem 1rem;
     border-radius: 2rem;
-    z-index: 1;
+    z-index: 2;
 }
 header > .row-container{
     width: 100%;
