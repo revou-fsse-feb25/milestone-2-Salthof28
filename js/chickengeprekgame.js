@@ -5,23 +5,28 @@ class ChickenGeprekGame {
         this.object = [{name: 'knife', src: 'assets/chicken-geprek-game/knife.png'}, {name: 'dedak', src: 'assets/chicken-geprek-game/dedak.png'}, {name: 'cobek', src: 'assets/chicken-geprek-game/cobek.png'}];
         this.startposition = 50
         this.movestep = 2.5;
-        this.settingspawninterval = 1000;
         this.initialFallspeed = 2;
+        this.initiallife = 3;
+        this.initialspawninterval = 1000
         this.clearobject = 500;
         this.playerPosition = this.startposition;
 
+        this.settingspawninterval = this.initialspawninterval;
         this.gamestarted = false;
         this.spawninterval = null;
         this.pointinterval = null;
         this.survivepointinterval = null;
         this.dedakscore = false;
-        this.fallspeed = 2;
+        this.fallspeed = this.initialFallspeed;
         this.score = 0;
-        this.life = 3;
+        this.life = this.initiallife;
 
+        this.dataleaderboard = document.getElementById ('dataleaderboard');
+        this.howplaycontainer = document.getElementById('howplay');
+        this.leaderboardcontainer = document.getElementById('leaderboard');
         this.player = document.getElementById('player');
         this.gameBox = document.getElementById('gameBox');
-        this.containerWidth = this.gameBox.offsetWidth;
+        this.containerWidth = this.gameBox.offsetWidth; // take width gameBox container
         this.btnstart = document.getElementById('btnstart');
         this.lifechickendisplay = document.getElementById('lifechickendisplay');
         this.scoredisplay = document.getElementById('scoredisplay');
@@ -32,8 +37,11 @@ class ChickenGeprekGame {
         this.handlekeydown = (event) => {
             this.movechicken(event.key);
         }; // can remove event
+        this.users = getUsers();
+        this.userlogin = statuslogin();
 
         this.player.style.display = 'none';
+        this.leaderboard();
         this.disableenablekeydown();
     }
     disableenablekeydown () {
@@ -46,9 +54,8 @@ class ChickenGeprekGame {
         }
     }
     start () {
-        this.life = 3;
-        this.fallspeed = this.initialFallspeed;
         this.player.style.left = `${this.playerPosition}%`;
+        this.howplaycontainer.style.display = 'none'; 
         this.scoredisplay.textContent = `Score: ${this.score}`;
         this.lifechickendisplay.textContent = `Chicken Life: ${this.life}`;
         this.gamestarted = true;
@@ -181,15 +188,54 @@ class ChickenGeprekGame {
         console.log("Game Over: Ayam kena benda jatuh!");
         clearInterval(this.survivepointinterval);
         this.gamestarted = false;
+        this.fallspeed = this.clearobject;
         this.disableenablekeydown();
-        this.playerPosition = this.startposition;
-        this.player.style.display = 'none';
         // this.btnstart.style.display = '';
         this.gameoverdisplay.style.display = 'flex';
         this.finalscoredisplay.textContent = `Score: ${this.score}`;
+        this.savedatagame();
+    }
+
+    savedatagame () {
+        if (this.userlogin) {
+            const user = this.users.find(user => user.username === this.userlogin.username && user.password === this.userlogin.password);
+            const chickengeprekgame = user.chickengeprekgame;
+            chickengeprekgame.hs = Math.max(this.score, chickengeprekgame.hs);
+            chickengeprekgame.tg += 1;
+            saveUsers(this.users);
+            login(user);
+        }
+        this.reset();
+    }
+
+    leaderboard () {
+        if (this.users) {
+            const userssort = this.users.sort ((a, b) => b.chickengeprekgame.hs - a.chickengeprekgame.hs);
+            userssort.forEach((databaseusers, index) => {
+                const username = databaseusers.username;
+                const chickengeprekgame = databaseusers.chickengeprekgame;
+                const trElement = document.createElement('tr');
+                const tdIndex = document.createElement('td');
+                tdIndex.textContent = index + 1;
+                const tdUsername = document.createElement('td');
+                tdUsername.textContent = username;
+                const tdHighScore = document.createElement('td');
+                tdHighScore.textContent = chickengeprekgame.hs;
+                trElement.append(tdIndex, tdUsername, tdHighScore);
+                this.dataleaderboard.appendChild(trElement);
+            });
+        }
+    }
+    reset () {
         this.score = 0;
-        this.fallspeed = this.clearobject;
-        this.settingspawninterval = 1000;
+        this.life = this.initiallife;
+        this.playerPosition = this.startposition;
+        this.fallspeed = this.initialFallspeed;
+        this.player.style.display = 'none';
+        this.settingspawninterval = this.initialspawninterval;
+        this.dataleaderboard.textContent = "";
+        this.leaderboardcontainer.style.display = 'flex';
+        this.leaderboard();
     }
 }
 
