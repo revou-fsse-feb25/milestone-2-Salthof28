@@ -81,6 +81,7 @@ button:active {
     align-items: center;
     background-color: rgb(33, 9, 43);
     padding: 8%;
+    text-align: center;
 }
 .list-games a {
     text-decoration: underline;
