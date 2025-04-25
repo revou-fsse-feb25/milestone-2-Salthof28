@@ -3,7 +3,7 @@
 ## 📌 Overview
 Sagames is a fun, interactive web-based game hub where users can enjoy a variety of simple yet addictive JavaScript games. Designed for casual players, Sagames is all about quick gameplay, clean design, and a nostalgic dose of classic mini-games — all accessible right from your browser.<br>
 Deploy Website:<br>
-github: https://revou-fsse-feb25.github.io/milestone-2-Salthof28/ <br>
+Visit the SaGame site: [SAgames website](https://revou-fsse-feb25.github.io/milestone-2-Salthof28/) <br>
 
 ## 🚀 Features 
 - **Home Page**: Introduction to sagames with a clean, visually appealing design. Overview of available games with navigation links to each game page. Responsive layout for an optimal experience across devices.
@@ -23,6 +23,9 @@ Pokemon Memory Game <br>
 Train your brain with this Pokémon-themed memory card matching game. Flip cards, find matching pairs, and try to complete the board in short time.
 ![Website Preview](assets/ss-markdown/memory-pokemon-game.png)
 ![Website Preview](assets/ss-markdown/memory-pokemon-game2.png)
+Chicken Geprek Game <br>
+Play as a chicken and dodge falling objects or you'll end up as chicken geprek!
+![Website Preview](assets/ss-markdown/chicken-geprek-game.png)
 - **User Authentication**: Register and login system using localStorage.
 ![Website Preview](assets/ss-markdown/create-account.png)
 ![Website Preview](assets/ss-markdown/login-page.png)
@@ -44,8 +47,6 @@ git clone https://github.com/revou-fsse-feb25/milestone-2-Salthof28.git
 ```
 2. Open index.html in a browser to view the website.
 
-## 📈 Future Enhancements
-- More Games
 
 ## Author
 :bulb: Salman Althof
