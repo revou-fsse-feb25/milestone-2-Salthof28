@@ -21,6 +21,8 @@ class ChickenGeprekGame {
         this.score = 0;
         this.life = this.initiallife;
 
+        this.soundearnpoint = new Audio('assets/audio/earnpoint-chicken.mp3');
+        this.soundchicken = new Audio('assets/audio/chicken-lose.mp3');
         this.dataleaderboard = document.getElementById ('dataleaderboard');
         this.howplaycontainer = document.getElementById('howplay');
         this.leaderboardcontainer = document.getElementById('leaderboard');
@@ -58,6 +60,7 @@ class ChickenGeprekGame {
         this.player.style.left = `${this.playerPosition}%`;
         this.leaderboardcontainer.style.display = 'flex';
         this.howplaycontainer.style.display = 'none'; 
+        this.fallspeed = this.initialFallspeed;
         this.scoredisplay.textContent = `Score: ${this.score}`;
         this.lifechickendisplay.textContent = `Chicken Life: ${this.life}`;
         this.gamestarted = true;
@@ -121,7 +124,7 @@ class ChickenGeprekGame {
                     fallingobj.remove(); // delete objek after gone off container
                 }
             }, 16) // for smooth falling 60fps => 1000ms/60fps = 16.67ms
-            this.DifficultIncrease(this.fallspeed);
+            this.DifficultIncrease();
         }, this.settingspawninterval)
     }
 
@@ -131,8 +134,10 @@ class ChickenGeprekGame {
         const isCollison = !(playerRect.bottom < objRect.top || playerRect.top > objRect.bottom ||playerRect.right < objRect.left || playerRect.left > objRect.right);
         if(isCollison) {
             if (fallingobj.dataset.value === 'dedak'){
+                this.showscoreeffect(objRect);
                 fallingobj.remove();
                 this.dedakscore = true;
+                this.soundearnpoint.play();
                 this.countpoint();
             }
             else {
@@ -145,6 +150,23 @@ class ChickenGeprekGame {
             this.dedakscore = false;
             this.countpoint();
         }, 5000);
+    }
+    showscoreeffect (objRect) {
+        const effect = document.createElement('div');
+        effect.className = 'scoreeffect';
+        effect.textContent = '+20';
+    
+        // count for appearance score effect when catch dedak
+        const gameBoxRect = this.gameBox.getBoundingClientRect();
+        effect.style.left = `${objRect.left - gameBoxRect.left}px`;
+        effect.style.top = `${objRect.top - gameBoxRect.top}px`;
+    
+        this.gameBox.appendChild(effect);
+    
+        // erase after animation finish
+        setTimeout(() => {
+            effect.remove();
+        }, 1000);
     }
     countpoint () {
         if(this.gamestarted){
@@ -159,15 +181,16 @@ class ChickenGeprekGame {
         }
         else {
             fallingobj.remove();
+            this.endGame();
             clearInterval(fallInterval);
             clearInterval(this.spawninterval);
-            this.endGame(); // call game over function
+             // call game over function
         }
     }
-    DifficultIncrease (fallspeed) {
+    DifficultIncrease () {
         switch(true) {
-            case (this.score >= 250 && fallspeed < 4):
-                fallspeed = 4;
+            case (this.score >= 250 && this.fallspeed < 4):
+                this.fallspeed = 4;
                 this.settingspawninterval = 200;
                 clearInterval(this.spawninterval);
                 this.spawnfallingobject();
@@ -188,13 +211,14 @@ class ChickenGeprekGame {
     }
     endGame () {
         console.log("Game Over: Ayam kena benda jatuh!");
+        this.fallspeed = this.clearobject;
         clearInterval(this.survivepointinterval);
         this.gamestarted = false;
-        this.fallspeed = this.clearobject;
         this.disableenablekeydown();
         // this.btnstart.style.display = '';
         this.gameoverdisplay.style.display = 'flex';
         this.finalscoredisplay.textContent = `Score: ${this.score}`;
+        this.soundchicken.play();
         this.savedatagame();
     }
 
@@ -231,7 +255,6 @@ class ChickenGeprekGame {
         this.score = 0;
         this.life = this.initiallife;
         this.playerPosition = this.startposition;
-        this.fallspeed = this.initialFallspeed;
         this.player.style.display = 'none';
         this.settingspawninterval = this.initialspawninterval;
         this.dataleaderboard.textContent = "";

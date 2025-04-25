@@ -84,6 +84,26 @@ button:active {
     background-repeat: no-repeat;
     background-position: center;
 }
+.game-box .scoreeffect {
+    position: absolute;
+    color: rgb(97, 95, 0);
+    font-weight: bold;
+    font-size: 18px;
+    animation: fadeUp 1s ease-out forwards;
+    z-index: 1;
+}
+
+@keyframes fadeUp {
+    0% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+  }
+
 .game-box #gameover {
     position: absolute;
     width: 100%;
