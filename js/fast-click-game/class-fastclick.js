@@ -9,6 +9,8 @@ class FastClick {
         this.dataleaderboard = document.getElementById ('dataleaderboard');
         this.howplaycontainer = document.getElementById('howplay');
         this.leaderboardcontainer = document.getElementById('leaderboard');
+        this.soundearnpoint = new Audio('assets/audio/earnpoint-fastclick .mp3');
+        this.soundend = new Audio ('assets/audio/negative_beeps-6008.mp3')
         this.initialTimer = 10;
         this.score = 0;
         this.timer = this.initialTimer;
@@ -46,6 +48,8 @@ class FastClick {
     countingscore () {
         this.score ++;
         this.scoretext.textContent = this.score;
+        this.soundearnpoint.currentTime = 0;
+        this.soundearnpoint.play();
     }
 
     savedatagame () {
@@ -61,6 +65,7 @@ class FastClick {
     }
     reset () {
         clearInterval(this.interval);
+        this.soundend.play();
         this.timer = this.initialTimer;
         this.timetext.textContent = "TIMEOUT";
         this.btnstart.style.display = "block";

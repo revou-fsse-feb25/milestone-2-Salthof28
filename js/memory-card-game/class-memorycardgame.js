@@ -12,6 +12,8 @@ class MemoryPokemonGame {
         this.dataleaderboard = document.getElementById('dataleaderboard');
         this.howplaycontainer = document.getElementById('howplay');
         this.leaderboardcontainer = document.getElementById('leaderboard');
+        this.soundwin = new Audio ('assets/audio/win.mp3');
+        this.soundlose = new Audio ('assets/audio/lose.mp3');
         this.users = getUsers();
         this.userlogin = statuslogin();
         this.timer = this.initialTimer;
@@ -104,7 +106,14 @@ class MemoryPokemonGame {
         }
     }
     endgame (statuswin) {
-        statuswin ? this.resultgame.textContent = 'YOU WIN' : this.resultgame.textContent = 'YOU LOSE';
+        if (statuswin) {
+            this.resultgame.textContent = 'YOU WIN';
+            this.soundwin.play()
+        }
+        else {
+            this.resultgame.textContent = 'YOU LOSE';
+            this.soundlose.play()
+        }
         this.savedatagame (statuswin)
     }
     savedatagame (statuswin) {

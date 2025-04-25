@@ -137,6 +137,7 @@ class ChickenGeprekGame {
                 this.showscoreeffect(objRect);
                 fallingobj.remove();
                 this.dedakscore = true;
+                this.soundearnpoint.currentTime = 0;
                 this.soundearnpoint.play();
                 this.countpoint();
             }

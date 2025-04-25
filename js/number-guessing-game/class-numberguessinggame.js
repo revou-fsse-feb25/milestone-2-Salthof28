@@ -12,6 +12,8 @@ class NumberGuessingGame {
         this.attemptdisplay = document.getElementById('attemptdisplay');
         this.howplaycontainer = document.getElementById('howplay');
         this.leaderboardcontainer = document.getElementById('leaderboard');
+        this.soundwin = new Audio ('assets/audio/win.mp3');
+        this.soundlose = new Audio ('assets/audio/lose.mp3');
         this.attempt = 5;
         this.statuswin = false;
         this.secretnumber;
@@ -50,7 +52,8 @@ class NumberGuessingGame {
             else {
                 this.guesser.textContent = `YOU WIN, The correct number is ${this.secretnumber}`;
                 this.statuswin = true;
-                this.savedatagame(this.statuswin)
+                this.savedatagame(this.statuswin);
+                this.soundwin.play();
                 this.reset ();
             }
             inptguess = "";
@@ -88,6 +91,7 @@ class NumberGuessingGame {
             this.statuswin = false;
             this.savedatagame(this.statuswin);
             this.reset();
+            this.soundlose.play();
         }
     }
     savedatagame (statuswin) {

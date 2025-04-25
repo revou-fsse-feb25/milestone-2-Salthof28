@@ -19,6 +19,8 @@ class RockScissorPaper {
         this.dataleaderboard = document.getElementById('dataleaderboard');
         this.howplaycontainer = document.getElementById('howplay');
         this.leaderboardcontainer = document.getElementById('leaderboard');
+        this.soundwin = new Audio ('assets/audio/win.mp3');
+        this.soundlose = new Audio ('assets/audio/lose.mp3');
 
         this.playerpoint = 0;
         this.computerpoint = 0;
@@ -124,12 +126,14 @@ class RockScissorPaper {
             this.statuswin = true;
             this.savedatagame(this.statuswin);
             this.resetgame();
+            this.soundwin.play();
         }
         else if (this.computerpoint == this.maxscore){
             this.finalresult.textContent = `COMPUTER WIN`;
             this.statuswin = false;
             this.savedatagame(this.statuswin);
             this.resetgame();
+            this.soundlose.play();
         }
         else {
             this.start ();
