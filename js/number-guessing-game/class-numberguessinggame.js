@@ -39,12 +39,21 @@ class NumberGuessingGame {
         this.formguess.style.display = 'block';
         this.btnstart.style.display = 'none';
         this.secretnumber = Math.floor(Math.random()*this.rangeguess.value) + 1;
-        this.guesser.textContent = `Guess the number I'm thinking of! The range 1 - ${this.rangeguess.value}`;
+        this.guesser.textContent = `Guess the number I'm thinking of!`;
         this.attemptdisplay.textContent = `Attempt: ${this.attempt}`;
         console.log (this.secretnumber);
     }
     processguess (inptguess) {
         if (inptguess != "") {
+            const convertrangeguess = Number(this.rangeguess.value);
+            inptguess > convertrangeguess ? this.guesser.textContent = `Your guessed number is out of range. The range 1 - ${this.rangeguess.value}` : this.isCorrectGuest(inptguess);;
+        }
+        else {
+            this.guesser.textContent = "You didn't input the guessed number";
+        }
+        this. inptguess.focus();
+    }
+    isCorrectGuest (inptguess) {
             if (inptguess != this.secretnumber) {
                 this.evaluateguess(inptguess);
                 this.chances();
@@ -57,11 +66,6 @@ class NumberGuessingGame {
                 this.reset ();
             }
             inptguess = "";
-        }
-        else {
-            this.guesser.textContent = "You didn't input the guessed number";
-        }
-        this. inptguess.focus();
     }
     evaluateguess (inptguess) {
         if (inptguess > this.secretnumber) {
