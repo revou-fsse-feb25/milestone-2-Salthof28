@@ -31,8 +31,8 @@ Play as a chicken and dodge falling objects or you'll end up as chicken geprek!
 ![Website Preview](assets/ss-markdown/login-page.png)
 - **User Profiles**: Track individual game progress (wins, losses, highscores) based on login. If you want to save your track progress, I recomend login before playing the game. In profile user you can monitor your performance across all games.
 ![Website Preview](assets/ss-markdown/history-game-user.png)
-
-
+- **Leaderboard**: 📊 Displays top scores and top win for each game. 👤 Shows usernames alongside their high scores and high win. 🔄 Automatically updates after each game session. 💾 Stores data persistently using local storage or user account data. 🕹️ Available for all games including Rock Paper Scissors, Fast Clicker, Memory Pokémon Game, Number Guessing Game, and Chicken Geprek Game.
+![Website Preview](assets/ss-markdown/leaderboard.png)
 ## 💡 Technologies Used
 - **HTML5** - Structure of the landing page and individual game pages.
 - **CSS3** - Styling for visual appeal and responsive design.
